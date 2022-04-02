@@ -1,15 +1,21 @@
 import React from 'react';
 import c from './Post.module.css'
 
-const Post = () => {
+
+type MypostsType = {
+    massage: string
+    likeCount:Number
+}
+
+const Post = (props: MypostsType) => {
     return (
         <div className={c.item}>
             <img
                 src="https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg"
                 alt=""/>
-            Post1
+            {props.massage}
             <div>
-                <span>Like</span>
+                <span>Like {props.likeCount}</span>
             </div>
         </div>
     );
