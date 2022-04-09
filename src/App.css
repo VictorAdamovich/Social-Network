@@ -1,12 +1,18 @@
-.app-wrapper{
+.app-wrapper {
     display: grid;
-    max-width: 1000px;
+    max-width: 1300px;
+    margin: auto;
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
     grid-gap: 10px;
     grid-template-areas:
     "h h"
     "n c";
+}
+
+.app-wrapper-content {
+    grid-area: c;
+    background-color: gold;
 }
 
 
