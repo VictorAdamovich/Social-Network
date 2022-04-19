@@ -3,25 +3,29 @@ import { NavLink } from 'react-router-dom';
 import s from './Navbar.module.css';
 
 const Navbar = () => {
+    const customActiveClassName = (navData:any) =>  navData.isActive ? s.active : s.item;
+
+
+
     return (
         <nav className={s.nav}>
-            <div className={s.item}>
-                <NavLink to="/profile">Profile</NavLink>
+            <div >
+                <NavLink to="/profile" className={customActiveClassName}>Profile</NavLink>
             </div>
-            <div className={s.item}>
-                <NavLink to="/dialog">Dialogs</NavLink>
+            <div>
+                <NavLink to="/dialog" className={customActiveClassName}>Dialogs</NavLink>
             </div>
-            <div className={s.item}>
-                <NavLink to="/massages">Massages</NavLink>
+            <div>
+                <NavLink to="/massages" className={customActiveClassName}>Massages</NavLink>
             </div>
-            <div className={s.item}>
-                <NavLink to="/news">News</NavLink>
+            <div>
+                <NavLink to="/news" className={customActiveClassName}>News</NavLink>
             </div>
-            <div className={s.item}>
-                <NavLink to="/music">Music</NavLink>
+            <div>
+                <NavLink to="/music" className={customActiveClassName}>Music</NavLink>
             </div>
-            <div className={s.item}>
-                <NavLink to="/settings">Settings</NavLink>
+            <div >
+                <NavLink to="/settings" className={customActiveClassName}>Settings</NavLink>
             </div>
         </nav>
     );
