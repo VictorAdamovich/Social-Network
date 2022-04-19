@@ -2,12 +2,12 @@ import React from 'react';
 import c from './Post.module.css'
 
 
-type MypostsType = {
+type MyPostsType = {
     massage: string
-    likeCount:Number
+    likeCount: number
 }
 
-const Post = (props: MypostsType) => {
+const Post = (props: MyPostsType) => {
     return (
         <div className={c.item}>
             <img
