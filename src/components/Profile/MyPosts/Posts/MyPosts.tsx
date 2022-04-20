@@ -3,7 +3,24 @@ import Post from './Post/Post'
 import c from './MyPosts.module.css'
 
 
+
 const MyPosts = () => {
+
+    let postData = [
+        {id: 1, massage: 'Hi,how are you?', likeCount: 4},
+        {id: 2, massage: 'Its my first post?', likeCount: 11}
+    ]
+
+
+    let dialogsElements = postData.map(d =>
+        <Post
+            id={d.id}
+            massage={d.massage}
+            likeCount={d.likeCount}
+        />)
+
+
+
     return (
         <div className={c.box}>
             <h3>My posts</h3>
@@ -12,8 +29,7 @@ const MyPosts = () => {
                 <button>Add post</button>
             </div>
             <div className={c.posts}>
-                <Post massage='Hi,how are you?' likeCount={1}/>
-                <Post massage="Its my first post" likeCount={2}/>
+                {dialogsElements}
             </div>
         </div>
     );

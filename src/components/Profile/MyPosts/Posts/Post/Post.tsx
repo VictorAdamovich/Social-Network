@@ -3,6 +3,7 @@ import c from './Post.module.css'
 
 
 type MyPostsType = {
+    id:number
     massage: string
     likeCount: number
 }
