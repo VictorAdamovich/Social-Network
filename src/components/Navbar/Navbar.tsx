@@ -12,7 +12,7 @@ const Navbar = () => {
                 <NavLink to="/profile" className={customActiveClassName}>Profile</NavLink>
             </div>
             <div>
-                <NavLink to="/massages" className={customActiveClassName}>Massages</NavLink>
+                <NavLink to="/massage" className={customActiveClassName}>Massages</NavLink>
             </div>
             <div>
                 <NavLink to="/news" className={customActiveClassName}>News</NavLink>

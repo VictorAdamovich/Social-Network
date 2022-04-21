@@ -4,21 +4,13 @@ import c from './MyPosts.module.css'
 
 
 
-const MyPosts = () => {
-
-    let postData = [
-        {id: 1, massage: 'Hi,how are you?', likeCount: 4},
-        {id: 2, massage: 'Its my first post?', likeCount: 11}
-    ]
-
-
-    let dialogsElements = postData.map(d =>
+const MyPosts = (props:any) => {
+    let dialogsElements = props.postData.map((d: { id: number; massage: string; likeCount: number; }) =>
         <Post
             id={d.id}
             massage={d.massage}
             likeCount={d.likeCount}
         />)
-
 
 
     return (

@@ -1,9 +1,7 @@
 import s from "../dialog.module.css";
 import React from "react";
 
-type massageType = {
-    massage: string
-}
-export const Massage = (props: massageType) => {
+
+export const Massage = (props:any) => {
     return <div className={s.massage}>{props.massage}</div>
 }
