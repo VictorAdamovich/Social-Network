@@ -7,12 +7,11 @@ import {Massage} from "./Massage/Massage";
 
 
 const Dialogs = (props: any) => {
-    console.log(props.dialogsData)
-    console.log(props.massagesData)
+    debugger;
 
     let dialogsElements = props.dialogsData.map((d:any) => <DialogItem  name={d.name} id={d.id}/>)
 
-    let massagesElements = props.massagesData.map((m:any) => <Massage massage={m.massage}/>)
+    let massagesElements = props.messagesData.map((m:any) => <Massage massage={m.massage}/>)
 
     return (
         <div className={s.dialogs}>

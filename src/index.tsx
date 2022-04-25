@@ -14,7 +14,7 @@ let dialogsData = [
     {id: 2, name: 'Andrei'},
     {id: 3, name: 'Sveta'},
     {id: 4, name: 'Victor'},
-    {id: 5, name: 'Valera '},
+    {id: 5, name: 'Valera '}
 ]
 
 let massagesData = [
@@ -22,7 +22,8 @@ let massagesData = [
     {id: 2, massage: 'Howe are you?'},
     {id: 3, massage: 'Yo'},
     {id: 4, massage: 'Yo'},
-    {id: 5, massage: 'Yo '},]
+    {id: 5, massage: 'Yo '}
+]
 
 ReactDOM.render(
 
