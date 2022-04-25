@@ -1,17 +1,15 @@
 import React from 'react';
 import s from './dialog.module.css'
 import {DialogItem} from "./DialogsItem/DialogItem";
-import {Massage} from "./Massage/Massage";
+import {Message} from "./Message/Message";
 
 
 
 
 const Dialogs = (props: any) => {
-    debugger;
+    let dialogsElements = props.state.dialogs.map((d:any) => <DialogItem  id={d.id} name={d.name} avatar={d.avatar} />)
 
-    let dialogsElements = props.dialogsData.map((d:any) => <DialogItem  name={d.name} id={d.id}/>)
-
-    let massagesElements = props.messagesData.map((m:any) => <Massage massage={m.massage}/>)
+    let massagesElements = props.state.messages.map((m:any) => <Message message={m.message}/>)
 
     return (
         <div className={s.dialogs}>

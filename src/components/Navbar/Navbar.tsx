@@ -1,10 +1,10 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import s from './Navbar.module.css';
+import {Frends} from "./Frends/Frends";
 
-const Navbar = () => {
+const Navbar = (props:any) => {
     const customActiveClassName = (navData: any) => navData.isActive ? s.active : s.item;
-
 
     return (
         <nav className={s.nav}>
@@ -12,7 +12,7 @@ const Navbar = () => {
                 <NavLink to="/profile" className={customActiveClassName}>Profile</NavLink>
             </div>
             <div>
-                <NavLink to="/massage" className={customActiveClassName}>Massages</NavLink>
+                <NavLink to="/message" className={customActiveClassName}>Massages</NavLink>
             </div>
             <div>
                 <NavLink to="/news" className={customActiveClassName}>News</NavLink>
@@ -23,8 +23,10 @@ const Navbar = () => {
             <div>
                 <NavLink to="/settings" className={customActiveClassName}>Settings</NavLink>
             </div>
+            <Frends state={props.state}/>
         </nav>
     );
 };
+
 
 export default Navbar;

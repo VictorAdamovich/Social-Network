@@ -1,28 +1,5 @@
-.dialogs{
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-
-}
-
-.dialogsItem{
-    padding: 10px;
-
-}
-
-.dialog{
-
-}
-
-
-.messages{
-    padding: 10px;
-
-}
-
-.message{
-
-}
-
-.active{
-    color: white;
+.dialog_avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }

@@ -9,20 +9,17 @@ import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
 
-//hi
 
 function App(props: any) {
-    debugger;
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
-                <Navbar/>
+                <Navbar state={props.state.dialogsPage.dialogs}/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path="/massage/*"
-                               element={<Dialogs messagesData={props.massagesData} dialogsData={props.dialogsData} />}/>
-                        <Route path="/profile/*" element={<Profile postData={props.postData}/>}/>
+                        <Route path="/message/*" element={<Dialogs state={props.state.dialogsPage}/>}/>
+                        <Route path="/profile/*" element={<Profile state={props.state.profilePage}/>}/>
                         <Route path="/news/" element={<News/>}/>
                         <Route path="/music/" element={<Music/>}/>
                         <Route path="/settings/" element={<Settings/>}/>

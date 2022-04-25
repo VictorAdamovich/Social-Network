@@ -5,13 +5,12 @@ import c from './MyPosts.module.css'
 
 
 const MyPosts = (props:any) => {
-    let dialogsElements = props.postData.map((d: { id: number; massage: string; likeCount: number; }) =>
+    let dialogsElements = props.postData.map((d: { id: number; message: string; likeCount: number; }) =>
         <Post
             id={d.id}
-            massage={d.massage}
+            massage={d.message}
             likeCount={d.likeCount}
         />)
-
 
     return (
         <div className={c.box}>
