@@ -1,23 +1,45 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import Post from './Post/Post'
 import c from './MyPosts.module.css'
 
 
+export type postsType = {
+    state: Array<postType>
+    addPost:(postMessage:string)=> void
+}
 
-const MyPosts = (props:any) => {
-    let dialogsElements = props.postData.map((d: { id: number; message: string; likeCount: number; }) =>
+export type postType = {
+    id: number
+    message: string
+    likeCount: number
+}
+
+
+const MyPosts = (props: postsType) => {
+    let dialogsElements = props.state.map((d: postType) =>
         <Post
             id={d.id}
             massage={d.message}
             likeCount={d.likeCount}
         />)
 
+    let newPostEl = useRef<HTMLTextAreaElement>(null)
+
+    const addPost = () => {
+        if (newPostEl.current !== null) {
+            props.addPost(newPostEl.current.value)
+            newPostEl.current.value=''
+        }
+    }
+
+
     return (
         <div className={c.box}>
             <h3>My posts</h3>
-            <textarea></textarea>
+            <textarea ref={newPostEl}
+            ></textarea>
             <div>
-                <button>Add post</button>
+                <button onClick={addPost}>Add post</button>
             </div>
             <div className={c.posts}>
                 {dialogsElements}

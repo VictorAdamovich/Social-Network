@@ -1,3 +1,5 @@
+import {renrerEntireTree} from "../render";
+
 export let state = {
     profilePage: {
         posts: [
@@ -22,4 +24,14 @@ export let state = {
     },
 }
 
+
+export const addPost = (postMessage:string) => {
+    let newPost={
+        id:5,
+        message:postMessage,
+        likeCount:0
+    }
+    state.profilePage.posts.unshift(newPost)
+    renrerEntireTree(state)
+}
 
