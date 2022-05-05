@@ -1,9 +1,28 @@
-.content img{
-    width: 600px;
+.content {
+    display: flex;
+    justify-content: right;
+    align-items: center;
     height: 200px;
+    border-radius:  18px 18px 0 0;
+    margin: -10px;
+    padding: 10px;
+    background-image: url(https://images.unsplash.com/photo-1612099452850-ed8efe7d58ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
 }
 
-.item{
+.profile{
+    display: flex;
+    align-items: center;
+}
+.profile span{
+    padding-right: 10px;
+}
+
+.profile img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.item {
     padding: 10px;
 }
 

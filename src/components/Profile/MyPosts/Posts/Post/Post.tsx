@@ -12,7 +12,7 @@ const Post = (props: MyPostsType) => {
     return (
         <div className={c.item}>
             <img
-                src="https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg"
+                src="http://sun9-81.userapi.com/s/v1/ig2/yfW2G2UjBNtgoykFhPdastdMpOjsVweYGmeYYWO3jWaQfy0hd1CGdEl-ke7JZ9LXhwClrQ7R6_juWk_VgITWQKpd.jpg?size=604x604&quality=96&type=album"
                 alt=""/>
             {props.massage}
             <div>

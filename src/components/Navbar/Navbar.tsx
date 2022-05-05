@@ -4,7 +4,7 @@ import s from './Navbar.module.css';
 import {Frends} from "./Frends/Frends";
 
 const Navbar = (props:any) => {
-    const customActiveClassName = (navData: any) => navData.isActive ? s.active : s.item;
+    const customActiveClassName = (navData: any) => navData.isActive ? s.active +' '+ s.item: s.item;
 
     return (
         <nav className={s.nav}>

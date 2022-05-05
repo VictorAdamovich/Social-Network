@@ -13,27 +13,27 @@ export let state = {
             {
                 id: 1,
                 name: 'Dimych',
-                avatar: 'https://bipbap.ru/wp-content/uploads/2019/08/0c7559dc264ad49ccfc6c8925dbd65a2.jpg'
+                avatar: 'https://abrakadabra.fun/uploads/posts/2021-12/1640107975_1-abrakadabra-fun-p-krutie-anime-avatarki-dlya-standoff-1.jpg'
             },
             {
                 id: 2,
                 name: 'Andrei',
-                avatar: 'https://bipbap.ru/wp-content/uploads/2019/08/0c7559dc264ad49ccfc6c8925dbd65a2.jpg'
+                avatar: 'https://abrakadabra.fun/uploads/posts/2021-12/1640107975_1-abrakadabra-fun-p-krutie-anime-avatarki-dlya-standoff-1.jpg'
             },
             {
                 id: 3,
                 name: 'Sveta',
-                avatar: 'https://bipbap.ru/wp-content/uploads/2019/08/0c7559dc264ad49ccfc6c8925dbd65a2.jpg'
+                avatar: 'https://abrakadabra.fun/uploads/posts/2021-12/1640107975_1-abrakadabra-fun-p-krutie-anime-avatarki-dlya-standoff-1.jpg'
             },
             {
                 id: 4,
                 name: 'Victor',
-                avatar: 'https://bipbap.ru/wp-content/uploads/2019/08/0c7559dc264ad49ccfc6c8925dbd65a2.jpg'
+                avatar: 'https://abrakadabra.fun/uploads/posts/2021-12/1640107975_1-abrakadabra-fun-p-krutie-anime-avatarki-dlya-standoff-1.jpg'
             },
             {
                 id: 5,
                 name: 'Valera',
-                avatar: 'https://bipbap.ru/wp-content/uploads/2019/08/0c7559dc264ad49ccfc6c8925dbd65a2.jpg'
+                avatar: 'https://abrakadabra.fun/uploads/posts/2021-12/1640107975_1-abrakadabra-fun-p-krutie-anime-avatarki-dlya-standoff-1.jpg'
             }
         ],
         messages: [

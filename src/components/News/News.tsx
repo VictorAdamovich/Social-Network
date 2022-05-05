@@ -4,7 +4,7 @@ import c from 'News.module.css';
 const News = () => {
     return (
         <div>
-            News
+            <h2>News</h2>
         </div>
     );
 };

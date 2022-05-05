@@ -1,15 +1,11 @@
 .dialogs{
     display: grid;
     grid-template-columns: 2fr 10fr;
-
+    border-right: 1px solid black;
 }
 
 .dialogsItem{
     padding: 10px;
-
-}
-
-.dialog{
 
 }
 

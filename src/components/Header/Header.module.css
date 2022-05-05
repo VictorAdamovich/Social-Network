@@ -1,9 +1,16 @@
-
 .header{
     grid-area: h;
-    background-color: red;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    box-shadow: 2px 4px 12px rgb(0 0 0 / 8%);
+    border-radius: 18px;
+}
+.header_logo{
+    padding: 10px;
 }
 
-.header img{
-    width: 50px;
+
+.header_logo img{
+    width: 150px;
 }

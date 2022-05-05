@@ -1,5 +1,6 @@
 import s from "../dialog.module.css";
 import React from "react";
+import c from "./Message.module.css";
 
 
 export type MessageType={

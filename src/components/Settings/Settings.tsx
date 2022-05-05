@@ -4,7 +4,7 @@ import c from 'Settings.module.css';
 const Settings = () => {
     return (
         <div>
-            Settings
+            <h2>Settings</h2>
         </div>
     );
 };

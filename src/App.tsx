@@ -23,31 +23,27 @@ export type AppStateType = {
 }
 
 
-function App(props: AppPropsType) {
-    debugger;
-
+export const App = (props: AppPropsType) => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
-                <Header/>
-                <Navbar state={props.state.dialogsPage.dialogs}/>
-                <div className='app-wrapper-content'>
-                    <Routes>
-                        <Route path="/message/*" element={<Dialogs state={props.state.dialogsPage}/>}/>
-                        <Route path="/profile/*"
-                               element={<Profile profilePage={props.state.profilePage}
-                                                 addPost={addPost}
-                                                 updateNewPostText={updateNewPostText}
-                               />
-                               }/>
-                        <Route path="/news/" element={<News/>}/>
-                        <Route path="/music/" element={<Music/>}/>
-                        <Route path="/settings/" element={<Settings/>}/>
-                    </Routes>
+                    <Header/>
+                    <Navbar state={props.state.dialogsPage.dialogs}/>
+                    <div className='app-wrapper-content'>
+                        <Routes>
+                            <Route path="/message/*" element={<Dialogs state={props.state.dialogsPage}/>}/>
+                            <Route path="/profile/*"
+                                   element={<Profile profilePage={props.state.profilePage}
+                                                     addPost={addPost}
+                                                     updateNewPostText={updateNewPostText}
+                                   />
+                                   }/>
+                            <Route path="/news/" element={<News/>}/>
+                            <Route path="/music/" element={<Music/>}/>
+                            <Route path="/settings/" element={<Settings/>}/>
+                        </Routes>
+                    </div>
                 </div>
-            </div>
         </BrowserRouter>
     );
 }
-
-export default App;

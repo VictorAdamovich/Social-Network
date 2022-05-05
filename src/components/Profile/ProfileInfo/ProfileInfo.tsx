@@ -5,12 +5,11 @@ export const ProfileInfo = () => {
     return (
         <div>
             <div className={c.content}>
-                <img
-                    src="https://media.cntraveler.com/photos/5eb18e42fc043ed5d9779733/16:9/w_2580,c_limit/BlackForest-Germany-GettyImages-147180370.jpg"
+                <div className={c.profile}>
+                    <span>Виктор Адамович</span><img
+                    src="http://sun9-81.userapi.com/s/v1/ig2/yfW2G2UjBNtgoykFhPdastdMpOjsVweYGmeYYWO3jWaQfy0hd1CGdEl-ke7JZ9LXhwClrQ7R6_juWk_VgITWQKpd.jpg?size=604x604&quality=96&type=album"
                     alt=""/>
-            </div>
-            <div className={c.item}>
-                ava+dicription
+                </div>
             </div>
         </div>
     )
