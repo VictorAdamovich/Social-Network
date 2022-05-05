@@ -3,20 +3,27 @@ import Post from './Post/Post'
 import c from './MyPosts.module.css'
 
 
-export type postsType = {
-    state: Array<postType>
-    addPost:(postMessage:string)=> void
+export type MyPostPropsType = {
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
+    state: MyPostStateType
 }
 
-export type postType = {
+export type MyPostStateType = {
+    newPostText: string
+    posts: MyPostType[]
+}
+
+
+type MyPostType = {
     id: number
     message: string
     likeCount: number
 }
 
 
-const MyPosts = (props: postsType) => {
-    let dialogsElements = props.state.map((d: postType) =>
+const MyPosts = (props: MyPostPropsType) => {
+    let dialogsElements = props.state.posts.map((d: MyPostType) =>
         <Post
             id={d.id}
             massage={d.message}
@@ -25,19 +32,18 @@ const MyPosts = (props: postsType) => {
 
     let newPostEl = useRef<HTMLTextAreaElement>(null)
 
-    const addPost = () => {
+    const addPost = () => props.addPost()
+
+    const onPostChange = () => {
         if (newPostEl.current !== null) {
-            props.addPost(newPostEl.current.value)
-            newPostEl.current.value=''
+            props.updateNewPostText(newPostEl.current.value)
         }
     }
-
 
     return (
         <div className={c.box}>
             <h3>My posts</h3>
-            <textarea ref={newPostEl}
-            ></textarea>
+            <textarea ref={newPostEl} value={props.state.newPostText} onChange={onPostChange}/>
             <div>
                 <button onClick={addPost}>Add post</button>
             </div>

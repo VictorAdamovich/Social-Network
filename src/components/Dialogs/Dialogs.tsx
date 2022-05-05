@@ -1,13 +1,33 @@
 import React, {useRef} from 'react';
 import s from './dialog.module.css'
-import {DialogItem, DialogItemType} from "./DialogsItem/DialogItem";
-import {Message, MessageType} from "./Message/Message";
+import {DialogItem} from "./DialogsItem/DialogItem";
+import {Message} from "./Message/Message";
 
+type DialogsPropsType = {
+    state: DialogsStateType
+}
 
-const Dialogs = (props: any) => {
-    let dialogsElements = props.state.dialogs.map((d: DialogItemType) => <DialogItem id={d.id} name={d.name} avatar={d.avatar}/>)
-    debugger
-    let massagesElements = props.state.messages.map((m: MessageType) => <Message message={m.message}/>)
+export type DialogsStateType = {
+    dialogs: DialogsType[]
+    messages: MessagesType[]
+}
+
+type DialogsType = {
+    id: number
+    name: string
+    avatar: string
+}
+
+type MessagesType = {
+    id: number
+    message: string
+}
+
+const Dialogs = (props: DialogsPropsType) => {
+
+    let dialogsElements = props.state.dialogs.map((d: DialogsType) => <DialogItem id={d.id} name={d.name}
+                                                                                  avatar={d.avatar}/>)
+    let massagesElements = props.state.messages.map((m: MessagesType) => <Message id={m.id} message={m.message}/>)
 
     let newMessageEl = useRef<HTMLTextAreaElement>(null)
 
