@@ -1,7 +1,6 @@
 import React from 'react';
 import MyPosts, {MyPostStateType} from "./MyPosts/Posts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {addPost, updateNewPostText} from "../../redux/state";
 import c from "./Profile.module.css";
 
 type ProfilePropsType={
@@ -14,7 +13,7 @@ const Profile = (props: ProfilePropsType) => {
     return (
         <div className={c.content}>
             <ProfileInfo/>
-            <MyPosts state={props.profilePage} addPost={addPost} updateNewPostText={updateNewPostText}/>
+            <MyPosts state={props.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>
         </div>
     );
 };

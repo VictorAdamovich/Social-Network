@@ -40,6 +40,8 @@ const MyPosts = (props: MyPostPropsType) => {
         }
     }
 
+    //
+
     return (
         <div className={c.box}>
             <h3>My posts</h3>
