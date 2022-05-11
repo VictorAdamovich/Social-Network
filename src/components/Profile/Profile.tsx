@@ -1,19 +1,13 @@
 import React from 'react';
-import MyPosts, {MyPostStateType} from "./MyPosts/Posts/MyPosts";
+import MyPosts from "./MyPosts/Posts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import c from "./Profile.module.css";
 
-type ProfilePropsType={
-    addPost: () => void
-    updateNewPostText:(newText:string)=>void
-    profilePage:MyPostStateType
-}
-
-const Profile = (props: ProfilePropsType) => {
+const Profile = (props: any) => {
     return (
         <div className={c.content}>
             <ProfileInfo/>
-            <MyPosts state={props.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>
+            <MyPosts state={props.profilePage} dispatch={props.dispatch}/>
         </div>
     );
 };

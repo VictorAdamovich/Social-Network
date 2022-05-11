@@ -3,27 +3,8 @@ import Post from './Post/Post'
 import c from './MyPosts.module.css'
 
 
-export type MyPostPropsType = {
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
-    state: MyPostStateType
-}
-
-export type MyPostStateType = {
-    newPostText: string
-    posts: MyPostType[]
-}
-
-
-type MyPostType = {
-    id: number
-    message: string
-    likeCount: number
-}
-
-
-const MyPosts = (props: MyPostPropsType) => {
-    let dialogsElements = props.state.posts.map((d: MyPostType) =>
+const MyPosts = (props: any) => {
+    let dialogsElements = props.state.posts.map((d: any) =>
         <Post
             id={d.id}
             massage={d.message}
@@ -32,22 +13,21 @@ const MyPosts = (props: MyPostPropsType) => {
 
     let newPostEl = useRef<HTMLTextAreaElement>(null)
 
-    const addPost = () => props.addPost()
+    const addPost = () => props.dispatch({type: 'ADD_POST',})
 
-    const onPostChange = () => {
-        if (newPostEl.current !== null) {
-            props.updateNewPostText(newPostEl.current.value)
-        }
-    }
+    const onPostChange = () => newPostEl.current !== null && props.dispatch({
+        type: 'UPDATE-NEW-POST-TEXT',
+        newText: newPostEl.current.value
+    })
 
-    //
 
     return (
         <div className={c.box}>
             <h3>My posts</h3>
             <textarea ref={newPostEl} value={props.state.newPostText} onChange={onPostChange}/>
             <div>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={addPost}>Send</button>
+
             </div>
             <div className={c.posts}>
                 {dialogsElements}

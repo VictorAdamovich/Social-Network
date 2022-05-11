@@ -44,25 +44,27 @@ export let store = {
             ]
         },
     },
-    addPost() {
-        debugger
-        let newPost = {id: 5, message: this._state.profilePage.newPostText, likeCount: 0}
-        this._state.profilePage.posts.unshift(newPost)
-        this._callSubscriber(this._state)
-        this._state.profilePage.newPostText = ''
+    _callSubscriber(state: any) {
+        console.log('hello')
     },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state)
+
+    getState() {
+        return this._state
     },
     subscribe(observer: any) {
         this._callSubscriber = observer
     },
-    getState(){
-        return this._state
-    },
-    _callSubscriber(state: any){
-        console.log('hello')
 
+    dispatch(action: any) {
+        if (action.type === 'ADD_POST') {
+            let newPost = {id: 5, message: this._state.profilePage.newPostText, likeCount: 0}
+            this._state.profilePage.posts.unshift(newPost)
+            this._callSubscriber(this._state)
+            this._state.profilePage.newPostText = ''
+        }
+        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this._state)
+        }
     }
 }
