@@ -1,7 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import s from './Navbar.module.css';
-import {Frends} from "./Frends/Frends";
 
 const Navbar = (props:any) => {
     const customActiveClassName = (navData: any) => navData.isActive ? s.active +' '+ s.item: s.item;
@@ -23,7 +22,6 @@ const Navbar = (props:any) => {
             <div>
                 <NavLink to="/settings" className={customActiveClassName}>Settings</NavLink>
             </div>
-            <Frends state={props.state}/>
         </nav>
     );
 };
