@@ -1,11 +1,4 @@
-.header{
-    grid-area: h;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    box-shadow: 2px 4px 12px rgb(0 0 0 / 8%);
-    border-radius: 18px;
-}
+
 .header_logo{
     padding: 10px;
 }

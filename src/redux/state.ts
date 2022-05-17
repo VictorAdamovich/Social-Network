@@ -1,5 +1,5 @@
-import {profileReducer} from "./profile-reducer";
-import {dialogsReducer} from "./dialogs-reducer";
+import {profileReducer} from './profile-reducer';
+import {dialogsReducer} from './dialogs-reducer';
 
 export let store = {
     _state: {
@@ -49,25 +49,25 @@ export let store = {
         },
     },
     _callSubscriber(state: any) {
-        console.log('hello')
+        console.log('hello');
     },
 
     getState() {
-        return this._state
+        return this._state;
     },
     subscribe(observer: any) {
-        this._callSubscriber = observer
+        this._callSubscriber = observer;
     },
 
     dispatch(action: any) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._callSubscriber(this._state)
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._callSubscriber(this._state);
     }
-}
+};
 
 
-export const addPostAC = () => ({type: 'ADD_POST'})
-export const updateNewPostTextAC = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text})
-export const addNewMessageAC = () => ({type: 'ADD-NEW-MESSAGE'})
-export const updateNewMessageAC = (text: string) => ({type: 'UPDATE-NEW-MESSAGE', newMessageText: text})
+export const addPostAC = () => ({type: 'ADD_POST'});
+export const updateNewPostTextAC = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+export const addNewMessageAC = () => ({type: 'ADD-NEW-MESSAGE'});
+export const updateNewMessageAC = (text: string) => ({type: 'UPDATE-NEW-MESSAGE', newMessageText: text});
