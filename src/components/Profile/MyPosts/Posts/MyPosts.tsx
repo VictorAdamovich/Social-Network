@@ -1,14 +1,21 @@
 import React, {useRef} from 'react';
 import Post from './Post/Post'
 import c from './MyPosts.module.css'
-import {addPostAC, updateNewPostTextAC} from "../../../../redux/state";
-import {Button, TextField} from "@mui/material";
+import {Button} from "@mui/material";
 import {Send} from "@mui/icons-material";
+import {addPostAC, PostType, ProfilePageType, updateNewPostTextAC} from '../../../../redux/profile-reducer';
+import {ActionsType} from '../../../../redux/redux-store';
 
 
+type MyPostType={
+    state: ProfilePageType
+    dispatch:(action: ActionsType) => void
+}
 
-const MyPosts = (props: any) => {
-    let dialogsElements = props.state.posts.map((d: any) =>
+
+const MyPosts = (props: MyPostType) => {
+    debugger;
+    let dialogsElements = props.state.posts.map((d: PostType) =>
         <Post
             id={d.id}
             massage={d.message}
@@ -27,7 +34,6 @@ const MyPosts = (props: any) => {
             <textarea ref={newPostEl} value={props.state.newPostText} onChange={onPostChange}/>
 
             <div>
-                {/*<button onClick={addPost}>Send</button>*/}
                 <Button onClick={addPost} variant="contained" endIcon={<Send />}>
                     Send
                 </Button>

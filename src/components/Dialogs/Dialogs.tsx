@@ -2,14 +2,27 @@ import React, {useRef} from 'react';
 import s from './dialog.module.css'
 import {DialogItem} from "./DialogsItem/DialogItem";
 import {Message} from "./Message/Message";
-import {addNewMessageAC, updateNewMessageAC} from "../../redux/state";
 import {Send} from "@mui/icons-material";
 import {Button} from "@mui/material";
+import {
+    addNewMessageAC,
+    DialogPageType,
+    DialogsType,
+    MessagesType,
+    updateNewMessageAC
+} from '../../redux/dialogs-reducer';
+import {ActionsType} from '../../redux/redux-store';
 
-const Dialogs = (props: any) => {
-    let dialogsElements = props.state.dialogs.map((d: any) => <DialogItem id={d.id} name={d.name}
+type DialogsPropsType={
+    state: DialogPageType
+    dispatch:(action: ActionsType) => void
+}
+
+const Dialogs = (props: DialogsPropsType) => {
+    debugger
+    let dialogsElements = props.state.dialogs.map((d: DialogsType) => <DialogItem id={d.id} name={d.name}
                                                                           avatar={d.avatar}/>)
-    let massagesElements = props.state.messages.map((m: any) => <Message id={m.id} message={m.message}/>)
+    let massagesElements = props.state.messages.map((m: MessagesType) => <Message id={m.id} message={m.message}/>)
 
     let newMessageEl = useRef<HTMLTextAreaElement>(null)
 

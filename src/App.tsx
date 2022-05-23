@@ -9,15 +9,21 @@ import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
 import {Card, Grid} from '@mui/material';
+import {ActionsType, RootReduxType} from './redux/redux-store';
 
+type AppPropsType = {
+    state: RootReduxType
+    dispatch: (action: ActionsType) => void
+}
 
-export const App = (props: any) => {
+export const App = (props: AppPropsType) => {
     return (
         <BrowserRouter>
             <Grid container spacing={2}>
                 <Grid item xs={2}>
-                    <Card variant="outlined"><Navbar state={props.state.dialogsPage.dialogs}/></Card>
-
+                    <Card variant="outlined">
+                        <Navbar/>
+                    </Card>
                 </Grid>
                 <Grid item xs={10}>
                     <Grid item xs={12}>
@@ -28,7 +34,7 @@ export const App = (props: any) => {
                             <Route path="/message/*"
                                    element={<Dialogs state={props.state.dialogsPage} dispatch={props.dispatch}/>}/>
                             <Route path="/profile/*"
-                                   element={<Profile profilePage={props.state.profilePage} dispatch={props.dispatch}
+                                   element={<Profile state={props.state.profilePage} dispatch={props.dispatch}
                                    />
                                    }/>
                             <Route path="/news/" element={<News/>}/>
@@ -40,11 +46,3 @@ export const App = (props: any) => {
         </BrowserRouter>
     );
 };
-
-<Grid container spacing={2}>
-
-
-    <Grid item xs={4}>
-
-    </Grid>
-</Grid>;

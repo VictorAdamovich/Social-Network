@@ -67,7 +67,7 @@ export let store = {
 };
 
 
-export const addPostAC = () => ({type: 'ADD_POST'});
-export const updateNewPostTextAC = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text});
-export const addNewMessageAC = () => ({type: 'ADD-NEW-MESSAGE'});
-export const updateNewMessageAC = (text: string) => ({type: 'UPDATE-NEW-MESSAGE', newMessageText: text});
+// export const addPostAC = () => ({type: 'ADD_POST'});
+// export const updateNewPostTextAC = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+// export const addNewMessageAC = () => ({type: 'ADD-NEW-MESSAGE'});
+//export const updateNewMessageAC = (text: string) => ({type: 'UPDATE-NEW-MESSAGE', newMessageText: text});
