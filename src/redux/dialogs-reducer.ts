@@ -83,7 +83,6 @@ export const dialogsReducer = (state: DialogPageType = initialState, action: Dia
             return state;
         }
     }
-    return state;
 };
 
 export const updateNewMessageAC = (text: string) => {

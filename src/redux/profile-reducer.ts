@@ -1,5 +1,5 @@
 const ADD_POST = 'ADD_POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
 export type ProfilePageACType =
     | ReturnType<typeof addPostAC>
@@ -31,21 +31,23 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
     switch (action.type) {
         case ADD_POST: {
             let newPost = {id: 5, message: state.newPostText, likeCount: 0};
-            state.posts.unshift(newPost);
-            state.newPostText = '';
-            return state;
+            return {
+                ...state,
+                posts: [newPost, ...state.posts],
+                newPostText: ''
+            };
         }
         case UPDATE_NEW_POST_TEXT: {
-            return{...state,
-                newPostText:action.payload.text
-            }
+            return {
+                ...state,
+                newPostText: action.payload.text
+            };
 
         }
         default: {
             return state;
         }
     }
-    return state;
 };
 
 

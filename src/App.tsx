@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Dialogs from './components/Dialogs/Dialogs';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
@@ -9,11 +8,11 @@ import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
 import {Card, Grid} from '@mui/material';
-import {ActionsType, RootReduxType} from './redux/redux-store';
+import {ActionsType} from './redux/redux-store';
+import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 
 type AppPropsType = {
-    state: RootReduxType
-    dispatch: (action: ActionsType) => void
+    store: any
 }
 
 export const App = (props: AppPropsType) => {
@@ -32,11 +31,9 @@ export const App = (props: AppPropsType) => {
                     <Grid item xs={10}>
                         <Routes>
                             <Route path="/message/*"
-                                   element={<Dialogs state={props.state.dialogsPage} dispatch={props.dispatch}/>}/>
+                                   element={<DialogsContainer store={props.store}/>}/>
                             <Route path="/profile/*"
-                                   element={<Profile state={props.state.profilePage} dispatch={props.dispatch}
-                                   />
-                                   }/>
+                                   element={<Profile store={props.store}/>}/>
                             <Route path="/news/" element={<News/>}/>
                             <Route path="/music/" element={<Music/>}/>
                             <Route path="/settings/" element={<Settings/>}/>

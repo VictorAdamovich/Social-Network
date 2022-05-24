@@ -1,33 +1,30 @@
 import React, {useRef} from 'react';
-import s from './dialog.module.css'
-import {DialogItem} from "./DialogsItem/DialogItem";
-import {Message} from "./Message/Message";
-import {Send} from "@mui/icons-material";
-import {Button} from "@mui/material";
+import s from './dialog.module.css';
+import {DialogItem} from './DialogsItem/DialogItem';
+import {Message} from './Message/Message';
+import {Send} from '@mui/icons-material';
+import {Button} from '@mui/material';
 import {
-    addNewMessageAC,
     DialogPageType,
     DialogsType,
-    MessagesType,
-    updateNewMessageAC
+    MessagesType
 } from '../../redux/dialogs-reducer';
-import {ActionsType} from '../../redux/redux-store';
 
-type DialogsPropsType={
+type DialogsPropsType = {
     state: DialogPageType
-    dispatch:(action: ActionsType) => void
+    onAddMessage:()=>void
+    onChangeHandler:(text:string)=>void
 }
 
 const Dialogs = (props: DialogsPropsType) => {
-    debugger
     let dialogsElements = props.state.dialogs.map((d: DialogsType) => <DialogItem id={d.id} name={d.name}
-                                                                          avatar={d.avatar}/>)
-    let massagesElements = props.state.messages.map((m: MessagesType) => <Message id={m.id} message={m.message}/>)
+                                                                                  avatar={d.avatar}/>);
+    let massagesElements = props.state.messages.map((m: MessagesType) => <Message id={m.id} message={m.message}/>);
 
-    let newMessageEl = useRef<HTMLTextAreaElement>(null)
+    let newMessageEl = useRef<HTMLTextAreaElement>(null);
 
-    const addMessage = () => props.dispatch(addNewMessageAC())
-    const onChangeHandler = () => newMessageEl.current !== null && props.dispatch(updateNewMessageAC(newMessageEl.current.value))
+    const addMessage = () => props.onAddMessage();
+    const onChangeHandler = () => newMessageEl.current !== null && props.onChangeHandler(newMessageEl.current.value);
 
     return (
         <div className={s.dialogs}>
