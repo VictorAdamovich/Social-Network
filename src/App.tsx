@@ -9,6 +9,7 @@ import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
 import {Card, Grid} from '@mui/material';
 import {DialogContainer} from './components/Dialogs/DialogsContainer';
+import UsersContainer from './components/Users/UsersContainer';
 
 
 export const App = () => {
@@ -26,9 +27,12 @@ export const App = () => {
                 <Grid item xs={10}>
                     <Routes>
                         <Route path="/message/*"
-                               element={<DialogContainer />}/>
+                               element={<DialogContainer/>}/>
                         <Route path="/profile/*"
                                element={<Profile/>}/>
+                        <Route path="/users" element={<UsersContainer/>}/>
+
+
                         <Route path="/news/" element={<News/>}/>
                         <Route path="/music/" element={<Music/>}/>
                         <Route path="/settings/" element={<Settings/>}/>
