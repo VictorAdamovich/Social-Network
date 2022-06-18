@@ -1,18 +1,20 @@
+import {User} from '../components/Users/Users';
+
 const TOGGLE_FOLLOW = 'TOGGLE-FOLLOW';
 const SET_USERS = 'SET-USERS';
 
 export type UserReducerType = {
-    users: UserType[]
+    users: User[]
 }
 
-export type UserType = {
-    id: number
-    photoUrl: string
-    followed: boolean
-    fullName: string
-    status: string
-    location: UserLocationType
-}
+// export type UserType = {
+//     id: number
+//     photoUrl: string
+//     followed: boolean
+//     fullName: string
+//     status: string
+//     location: UserLocationType
+// }
 
 type UserLocationType = {
     city: string
@@ -24,32 +26,7 @@ type UsersACType =
     | ReturnType<typeof setUsersAC>
 
 const initialState: UserReducerType = {
-    users: [
-        {
-            id: 1,
-            photoUrl: 'https://www.blast.hk/attachments/64805/',
-            followed: false,
-            fullName: 'Victor',
-            status: 'I am a boss',
-            location: {city: 'Minsk', country: 'belarus'}
-        },
-        {
-            id: 2,
-            photoUrl: 'https://www.blast.hk/attachments/64805/',
-            followed: false,
-            fullName: 'Alex',
-            status: 'I am a boss',
-            location: {city: 'Minsk', country: 'belarus'}
-        },
-        {
-            id: 3,
-            photoUrl: 'https://www.blast.hk/attachments/64805/',
-            followed: false,
-            fullName: 'Max',
-            status: 'I am a boss',
-            location: {city: 'Minsk', country: 'belarus'}
-        }
-    ]
+    users: []
 };
 
 export const usersReducer = (state: UserReducerType = initialState, action: UsersACType): UserReducerType => {
@@ -57,7 +34,7 @@ export const usersReducer = (state: UserReducerType = initialState, action: User
         case TOGGLE_FOLLOW: {
             return {
                 ...state,
-                users: state.users.map((u: UserType) => u.id === action.payload.userID ? {
+                users: state.users.map((u: User) => u.id === action.payload.userID ? {
                     ...u,
                     followed: !u.followed
                 } : u)
@@ -77,4 +54,4 @@ export const usersReducer = (state: UserReducerType = initialState, action: User
 
 
 export const followToggleAC = (userID: number) => ({type: TOGGLE_FOLLOW, payload: {userID}}) as const;
-export const setUsersAC = (users: UserType[]) => ({type: SET_USERS, payload: {users}}) as const;
+export const setUsersAC = (users: User[]) => ({type: SET_USERS, payload: {users}}) as const;

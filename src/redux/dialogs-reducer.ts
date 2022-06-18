@@ -69,14 +69,15 @@ export const dialogsReducer = (state: DialogPageType = initialState, action: Dia
         case ADD_NEW_MESSAGE: {
             return {
                 ...state,
-                messages: [...state.messages,{id: 6, message: state.newMessageText}],
-                newMessageText:''
+                messages: [...state.messages, {id: 6, message: state.newMessageText}],
+                newMessageText: ''
             };
         }
         case UPDATE_NEW_MESSAGE: {
-            return{...state,
-                newMessageText:action.payload.text,
-            }
+            return {
+                ...state,
+                newMessageText: action.payload.text,
+            };
         }
         default: {
             return state;

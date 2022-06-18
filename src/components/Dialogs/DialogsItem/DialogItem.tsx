@@ -1,7 +1,7 @@
-import s from "../dialog.module.css";
-import {NavLink} from "react-router-dom";
-import React from "react";
-import c from './massage.module.css'
+import s from '../dialog.module.css';
+import {NavLink} from 'react-router-dom';
+import React from 'react';
+import c from './massage.module.css';
 
 export type DialogItemType = {
     id: number
@@ -18,5 +18,5 @@ export const DialogItem = (props: DialogItemType) => {
                 {props.name}
             </NavLink>
         </div>
-    )
-}
+    );
+};

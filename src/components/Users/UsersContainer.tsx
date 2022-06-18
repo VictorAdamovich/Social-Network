@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Users} from './Users';
 import {RootReduxType} from '../../redux/redux-store';
-import {followToggleAC, setUsersAC, UserReducerType, UserType} from '../../redux/users-reducer';
+import {followToggleAC, setUsersAC, UserReducerType} from '../../redux/users-reducer';
 import {Dispatch} from 'redux';
+import {User, Users} from './Users';
 
 const mapStateToProps = (state: RootReduxType): UserReducerType => {
     return {
@@ -15,7 +15,7 @@ const mapStateToProps = (state: RootReduxType): UserReducerType => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         followToggle: (userID: number) => dispatch(followToggleAC(userID)),
-        setUsers: (users: UserType[]) => dispatch(setUsersAC(users))
+        setUsers: (users: User[]) => dispatch(setUsersAC(users))
     };
 
 };
