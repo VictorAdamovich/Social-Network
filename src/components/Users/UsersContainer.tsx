@@ -32,7 +32,7 @@ export type UserAPIContainerPropsType = {
     currentPage: number
 }
 
-export class UsersAPIComponent extends React.Component<UserAPIContainerPropsType, any> {
+export class UsersContainer extends React.Component<UserAPIContainerPropsType, any> {
     componentDidMount() {
         axios.get<GetUsersResponse>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
@@ -87,4 +87,4 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
