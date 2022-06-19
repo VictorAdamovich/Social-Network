@@ -2,8 +2,8 @@ const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
 export type ProfilePageACType =
-    | ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof addPost>
+    | ReturnType<typeof updateNewPostText>
 
 
 export type PostType = {
@@ -25,7 +25,6 @@ let initialState = {
     ],
     newPostText: ''
 };
-
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfilePageACType): ProfilePageType => {
     switch (action.type) {
@@ -50,10 +49,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
     }
 };
 
-
-export const addPostAC = () => ({type: ADD_POST} as const);
-
-export const updateNewPostTextAC = (text: string) => {
+export const addPost = () => ({type: ADD_POST} as const);
+export const updateNewPostText = (text: string) => {
     return {type: UPDATE_NEW_POST_TEXT, payload: {text}} as const;
 };
 

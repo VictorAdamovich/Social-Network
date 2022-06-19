@@ -7,8 +7,8 @@ import {User} from '../../redux/users-reducer';
 type UserPropsType = {
     users: User[]
     onPageChanged: (pageNumber: number) => void
-    followToggle: (userID: number) => void
-    changePage: (pageNumber: number) => void
+    setFollowToggle: (userID: number) => void
+    setCurrentPage: (pageNumber: number) => void
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -36,7 +36,7 @@ const Users = (props: UserPropsType) => {
                                     className={s.User_img}/></div>
                         <div>
                             <button
-                                onClick={() => props.followToggle(u.id)}>
+                                onClick={() => props.setFollowToggle(u.id)}>
                                 {u.followed
                                     ? 'unfollow'
                                     : ' follow '}
@@ -61,8 +61,6 @@ const Users = (props: UserPropsType) => {
                             </div>
                         </span>
                     </span>
-
-
                 </div>)
                 }
             </div>

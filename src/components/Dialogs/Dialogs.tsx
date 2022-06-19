@@ -7,13 +7,13 @@ import {Button} from '@mui/material';
 import {
     DialogPageType,
     DialogsType,
-    MessagesType
+    MessagesType, updateNewMessage
 } from '../../redux/dialogs-reducer';
 
 type DialogsPropsType = {
     state: DialogPageType
-    onAddMessage:()=>void
-    onChangeHandler:(text:string)=>void
+    addNewMessage:()=>void
+    updateNewMessage:(text:string)=>void
 }
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -23,8 +23,8 @@ const Dialogs = (props: DialogsPropsType) => {
 
     let newMessageEl = useRef<HTMLTextAreaElement>(null);
 
-    const addMessage = () => props.onAddMessage();
-    const onChangeHandler = () => newMessageEl.current !== null && props.onChangeHandler(newMessageEl.current.value);
+    const addMessage = () => props.addNewMessage();
+    const onChangeHandler = () => newMessageEl.current !== null && props.updateNewMessage(newMessageEl.current.value);
 
     return (
         <div className={s.dialogs}>

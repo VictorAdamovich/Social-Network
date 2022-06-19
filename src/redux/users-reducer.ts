@@ -82,18 +82,18 @@ export const usersReducer = (state: UserReducerType = initialState, action: User
 };
 
 
-type UsersACType = ReturnType<typeof followToggleAC>
-    | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setCurrentPageAC>
-    | ReturnType<typeof setTotalUsersCountAC>
-    | ReturnType<typeof setFetchingAC>
+type UsersACType = ReturnType<typeof setFollowToggle>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof setFetching>
 
 
-export const followToggleAC = (userID: number) => ({type: TOGGLE_FOLLOW, payload: {userID}}) as const;
-export const setUsersAC = (users: User[]) => ({type: SET_USERS, payload: {users}}) as const;
-export const setCurrentPageAC = (pageNumber: number) => ({type: SET_CURRENT_PAGE, payload: {pageNumber}}) as const;
-export const setTotalUsersCountAC = (totalUsersCount: number) => ({
+export const setFollowToggle = (userID: number) => ({type: TOGGLE_FOLLOW, payload: {userID}}) as const;
+export const setUsers = (users: User[]) => ({type: SET_USERS, payload: {users}}) as const;
+export const setCurrentPage = (pageNumber: number) => ({type: SET_CURRENT_PAGE, payload: {pageNumber}}) as const;
+export const setTotalUsersCount = (totalUsersCount: number) => ({
     type: SET_TOTAL_USERS_COUNT,
     payload: {totalUsersCount}
 }) as const;
-export const setFetchingAC = (isFetching:boolean) => ({type: TOGGLE_IS_FETCHING, payload:{isFetching}}) as const;
+export const setFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, payload: {isFetching}}) as const;

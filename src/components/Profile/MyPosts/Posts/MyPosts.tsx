@@ -10,7 +10,7 @@ type MyPostType = {
     posts: PostType[]
     newPostText: string
     addPost: () => void
-    onPostChange: (text: string) => void
+    updateNewPostText: (text: string) => void
 }
 
 
@@ -25,7 +25,7 @@ const MyPosts = (props: MyPostType) => {
     let newPostEl = useRef<HTMLTextAreaElement>(null);
 
     const onAddPost = () => props.addPost();
-    const onPostChange = () => newPostEl.current !== null && props.onPostChange(newPostEl.current.value);
+    const onPostChange = () => newPostEl.current !== null && props.updateNewPostText(newPostEl.current.value);
 
 
     return (

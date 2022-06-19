@@ -3,8 +3,8 @@ const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
 
 
 export type DialogsPageACType =
-    ReturnType<typeof updateNewMessageAC> |
-    ReturnType<typeof addNewMessageAC>
+    ReturnType<typeof updateNewMessage> |
+    ReturnType<typeof addNewMessage>
 
 
 export type MessagesType = {
@@ -85,9 +85,9 @@ export const dialogsReducer = (state: DialogPageType = initialState, action: Dia
     }
 };
 
-export const updateNewMessageAC = (text: string) => {
+export const updateNewMessage = (text: string) => {
     return {type: UPDATE_NEW_MESSAGE, payload: {text}} as const;
 };
 
-export const addNewMessageAC = () => ({type: ADD_NEW_MESSAGE} as const);
+export const addNewMessage = () => ({type: ADD_NEW_MESSAGE} as const);
 
