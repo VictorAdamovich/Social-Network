@@ -7,3 +7,11 @@
 .userBox{
     display: flex;
 }
+
+.selected{
+    font-weight: bold;
+    cursor: pointer;
+}
+.item{
+   cursor: pointer;
+}
