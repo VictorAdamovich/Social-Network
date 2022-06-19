@@ -2,12 +2,14 @@ const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW-FOLLOW';
 const SET_USERS = 'SET_USERS-USERS';
 const SET_CURRENT_PAGE = 'SET-SET_CURRENT_PAGE-PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 
 export type UserReducerType = {
     users: User[]
-    pageSize:number
-    totalUsersCount:number
-    currentPage:number
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
 }
 
 export interface Photos {
@@ -30,16 +32,12 @@ export interface GetUsersResponse {
     error?: any;
 }
 
-type UsersACType = ReturnType<typeof followToggleAC>
-    | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setCurrentPageAC>
-    | ReturnType<typeof setTotalUsersCountAC>
-
 const initialState: UserReducerType = {
     users: [],
-    pageSize:100,
-    totalUsersCount:21,
-    currentPage:1
+    pageSize: 100,
+    totalUsersCount: 21,
+    currentPage: 1,
+    isFetching: true
 };
 
 export const usersReducer = (state: UserReducerType = initialState, action: UsersACType): UserReducerType => {
@@ -59,17 +57,23 @@ export const usersReducer = (state: UserReducerType = initialState, action: User
                 users: [...action.payload.users]
             };
         }
-        case SET_CURRENT_PAGE:{
+        case SET_CURRENT_PAGE: {
             return {
                 ...state,
-                currentPage:action.payload.pageNumber
-            }
+                currentPage: action.payload.pageNumber
+            };
         }
-        case SET_TOTAL_USERS_COUNT:{
+        case SET_TOTAL_USERS_COUNT: {
             return {
                 ...state,
-                totalUsersCount:action.payload.totalUsersCount
-            }
+                totalUsersCount: action.payload.totalUsersCount
+            };
+        }
+        case TOGGLE_IS_FETCHING: {
+            return {
+                ...state,
+                isFetching: action.payload.isFetching
+            };
         }
         default: {
             return state;
@@ -78,7 +82,18 @@ export const usersReducer = (state: UserReducerType = initialState, action: User
 };
 
 
+type UsersACType = ReturnType<typeof followToggleAC>
+    | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setTotalUsersCountAC>
+    | ReturnType<typeof setFetchingAC>
+
+
 export const followToggleAC = (userID: number) => ({type: TOGGLE_FOLLOW, payload: {userID}}) as const;
 export const setUsersAC = (users: User[]) => ({type: SET_USERS, payload: {users}}) as const;
-export const setCurrentPageAC = (pageNumber:number) => ({type: SET_CURRENT_PAGE, payload: {pageNumber}}) as const;
-export const setTotalUsersCountAC = (totalUsersCount:number) => ({type: SET_TOTAL_USERS_COUNT, payload: {totalUsersCount}}) as const;
+export const setCurrentPageAC = (pageNumber: number) => ({type: SET_CURRENT_PAGE, payload: {pageNumber}}) as const;
+export const setTotalUsersCountAC = (totalUsersCount: number) => ({
+    type: SET_TOTAL_USERS_COUNT,
+    payload: {totalUsersCount}
+}) as const;
+export const setFetchingAC = (isFetching:boolean) => ({type: TOGGLE_IS_FETCHING, payload:{isFetching}}) as const;
