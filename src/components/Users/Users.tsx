@@ -35,14 +35,11 @@ export interface GetUsersResponse {
 
 
 
-export class Users extends React.Component<UserPropsType, any>{
-    constructor(props: UserPropsType) {
-        super(props);
-
+export class Users extends React.Component<UserPropsType,any>{
+    componentDidMount() {
         axios.get<GetUsersResponse>('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => this.props.setUsers(response.data.items));
     }
-
 
 
     render() {
