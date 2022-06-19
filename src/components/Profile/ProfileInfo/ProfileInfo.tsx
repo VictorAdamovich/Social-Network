@@ -1,16 +1,25 @@
-import c from "./ProfileInfo.module.css";
-import React from "react";
+import c from './ProfileInfo.module.css';
+import React from 'react';
+import {ProfileType} from '../../../redux/profile-reducer';
+import {Preloader} from '../../common/Preloader/Preloader';
 
-export const ProfileInfo = () => {
-    return (
-        <div>
+type ProfileInfoType = {
+    profile: ProfileType | null
+}
+
+export const ProfileInfo = (props: ProfileInfoType) => {
+    if (!props.profile) {
+        return <Preloader/>;
+    } else {
+        return <div>
             <div className={c.content}>
                 <div className={c.profile}>
-                    <h2>Виктор Адамович</h2><img
-                    src="http://sun9-81.userapi.com/s/v1/ig2/yfW2G2UjBNtgoykFhPdastdMpOjsVweYGmeYYWO3jWaQfy0hd1CGdEl-ke7JZ9LXhwClrQ7R6_juWk_VgITWQKpd.jpg?size=604x604&quality=96&type=album"
-                    alt=""/>
+                    <h2>{props.profile.fullName}</h2>
+                    <img
+                        src={props.profile.photos.large}
+                        alt="userPhoto"/>
                 </div>
             </div>
-        </div>
-    )
-}
+        </div>;
+    }
+};

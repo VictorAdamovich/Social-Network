@@ -1,9 +1,9 @@
 import {combineReducers, legacy_createStore as createStore, Store} from 'redux';
 import {ProfilePageACType, profileReducer} from './profile-reducer';
 import {DialogsPageACType, dialogsReducer} from './dialogs-reducer';
-import {usersReducer} from './users-reducer';
+import {UsersACType, usersReducer} from './users-reducer';
 
-export type ActionsType = DialogsPageACType | ProfilePageACType
+export type ActionsType = DialogsPageACType | ProfilePageACType | UsersACType
 
 let reducers = combineReducers({
     dialogsPage: dialogsReducer,

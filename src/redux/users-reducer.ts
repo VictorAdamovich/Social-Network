@@ -82,7 +82,7 @@ export const usersReducer = (state: UserReducerType = initialState, action: User
 };
 
 
-type UsersACType = ReturnType<typeof setFollowToggle>
+export type UsersACType = ReturnType<typeof setFollowToggle>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>

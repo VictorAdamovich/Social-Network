@@ -2,6 +2,7 @@ import React from 'react';
 import s from './users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import {User} from '../../redux/users-reducer';
+import {NavLink} from 'react-router-dom';
 
 
 type UserPropsType = {
@@ -26,14 +27,19 @@ const Users = (props: UserPropsType) => {
             <div>
                 {pages.map(p => {
                     return <span
+                        key={p}
                         onClick={() => props.onPageChanged(p)}
                         className={props.currentPage === p ? s.selected : s.item}
                     >{`${p} `}</span>;
                 })}
 
                 {props.users.map((u) => <div className={s.userBox} key={u.id}>
-                    <span><div><img alt={'userAvatar'} src={u.photos.small ? u.photos.small : userPhoto}
-                                    className={s.User_img}/></div>
+                    <span><div>
+                        <NavLink to={`/profile/${u.id}`}>
+                        <img alt={'userAvatar'} src={u.photos.small ? u.photos.small : userPhoto}
+                             className={s.User_img}/>
+                    </NavLink>
+                    </div>
                         <div>
                             <button
                                 onClick={() => props.setFollowToggle(u.id)}>

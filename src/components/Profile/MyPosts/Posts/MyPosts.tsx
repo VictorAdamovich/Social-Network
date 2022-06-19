@@ -17,6 +17,7 @@ type MyPostType = {
 const MyPosts = (props: MyPostType) => {
     let dialogsElements = props.posts.map((d: PostType) =>
         <Post
+            key={d.id}
             id={d.id}
             massage={d.message}
             likeCount={d.likeCount}
