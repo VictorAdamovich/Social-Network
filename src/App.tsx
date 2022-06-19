@@ -15,18 +15,17 @@ import Grid from '@mui/material/Grid';
 export const App = () => {
     return (
         <>
-            <Grid container spacing={2}>
-                <Grid item xs={3}>
+            <Grid container>
+                <Grid item xs={1}>
                     <Navbar/>
                 </Grid>
 
-                <Grid item xs={9}>
-
+                <Grid item xs={11}>
                     <Grid item xs={12}>
                         <Header/>
                     </Grid>
 
-                    <Grid item xs={8}>
+                    <Grid item xs={12}>
                         <Routes>
                             <Route path="/message/*"
                                    element={<DialogContainer/>}/>

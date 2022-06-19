@@ -1,18 +1,27 @@
-.nav {
-    grid-area: n;
-    padding: 15px;
-    background-color: #ffffff;
-    box-shadow: 2px 4px 12px rgb(0 0 0 / 8%);
-    border-radius: 18px;
+.Navbar {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-right: 1px solid #e6e6e6;
+    height: 100%;
 }
 
-.item{
-    padding: 3px;
+h3 {
+    display: flex;
+    font-weight: normal;
+    margin: 0;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 5px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.item {
     color: #000000;
     text-decoration: none;
 }
 
-.active{
+.active {
     text-decoration: none;
     font-weight: bold;
     color: #00D7FE;

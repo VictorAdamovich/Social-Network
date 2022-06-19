@@ -1,13 +1,13 @@
 import React from 'react';
-import c from './Header.module.css';
+import s from './Header.module.css';
 
 const Header = () => {
     return (
-        <header className={c.header}>
-            <div className={c.header_logo}>
+        <header className={s.header}>
+            <div className={s.header_logo}>
                 <img
-                    src="https://edu.softline.by/upload/catalog/small/1606726858_react_logo_wordmark.png"
-                    alt="ps"/>
+                    src="https://static.tildacdn.com/tild6238-3535-4331-b232-346335383032/React.png"
+                    alt="ReactLogo"/>
             </div>
         </header>
     );

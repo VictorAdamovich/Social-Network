@@ -1,6 +1,9 @@
-
+.header{
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #1976d2;
+}
 .header_logo{
-    padding: 10px;
+    padding: 5px;
 }
 
 
