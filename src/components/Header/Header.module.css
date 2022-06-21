@@ -1,12 +1,19 @@
-.header{
+.header {
     border-bottom: 1px solid #e6e6e6;
     background-color: #1976d2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.header_logo{
+
+.header_logo {
     padding: 5px;
 }
 
-
-.header_logo img{
+.header_logo img {
     width: 150px;
+}
+
+.loginBlock {
+
 }

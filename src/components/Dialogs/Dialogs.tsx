@@ -7,7 +7,7 @@ import {Button} from '@mui/material';
 import {
     DialogPageType,
     DialogsType,
-    MessagesType, updateNewMessage
+    MessagesType
 } from '../../redux/dialogs-reducer';
 
 type DialogsPropsType = {
@@ -42,7 +42,6 @@ const Dialogs = (props: DialogsPropsType) => {
                     </Button>
                 </div>
             </div>
-
         </div>
     );
 };

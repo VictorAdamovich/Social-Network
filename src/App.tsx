@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import {Route, Routes} from 'react-router-dom';
 import News from './components/News/News';
@@ -10,6 +9,7 @@ import {DialogContainer} from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import Grid from '@mui/material/Grid';
 import ProfileContainer from './components/Profile/ProfileContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 
 export const App = () => {
@@ -22,7 +22,7 @@ export const App = () => {
 
                 <Grid item xs={11}>
                     <Grid item xs={12}>
-                        <Header/>
+                        <HeaderContainer/>
                     </Grid>
 
                     <Grid item xs={12}>
