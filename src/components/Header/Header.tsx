@@ -10,7 +10,6 @@ type HeaderPropsType = {
 
 
 const Header = (props: any) => {
-    debugger
     return (
         <header className={s.header}>
             <div className={s.header_logo}>

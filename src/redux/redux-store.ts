@@ -17,3 +17,6 @@ export type RootReduxType = ReturnType<typeof reducers>
 
 export let store: Store<RootReduxType, ActionsType> = createStore(reducers);
 
+// @ts-ignore
+window.store = store
+

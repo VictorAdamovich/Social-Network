@@ -1,4 +1,5 @@
-const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW-FOLLOW';
+const FOLLOW = 'FOLLOW';
+const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS-USERS';
 const SET_CURRENT_PAGE = 'SET-SET_CURRENT_PAGE-PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
@@ -42,12 +43,22 @@ const initialState: UserReducerType = {
 
 export const usersReducer = (state: UserReducerType = initialState, action: UsersACType): UserReducerType => {
     switch (action.type) {
-        case TOGGLE_FOLLOW: {
+        case FOLLOW: {
+            console.log(action.payload.userID);
             return {
                 ...state,
                 users: state.users.map((u: User) => u.id === action.payload.userID ? {
                     ...u,
-                    followed: !u.followed
+                    followed: true
+                } : u)
+            };
+        }
+        case UNFOLLOW: {
+            return {
+                ...state,
+                users: state.users.map((u: User) => u.id === action.payload.userID ? {
+                    ...u,
+                    followed: false
                 } : u)
             };
         }
@@ -81,19 +92,20 @@ export const usersReducer = (state: UserReducerType = initialState, action: User
     }
 };
 
-
-export type UsersACType = ReturnType<typeof setFollowToggle>
+export type UsersACType = ReturnType<typeof setUnfollow>
+    | ReturnType<typeof setFollow>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof setFetching>
 
 
-export const setFollowToggle = (userID: number) => ({type: TOGGLE_FOLLOW, payload: {userID}}) as const;
-export const setUsers = (users: User[]) => ({type: SET_USERS, payload: {users}}) as const;
-export const setCurrentPage = (pageNumber: number) => ({type: SET_CURRENT_PAGE, payload: {pageNumber}}) as const;
+export const setFollow = (userID: number) => ({type: FOLLOW, payload: {userID}} as const);
+export const setUnfollow = (userID: number) => ({type: UNFOLLOW, payload: {userID}} as const);
+export const setUsers = (users: User[]) => ({type: SET_USERS, payload: {users}} as const);
+export const setCurrentPage = (pageNumber: number) => ({type: SET_CURRENT_PAGE, payload: {pageNumber}} as const);
 export const setTotalUsersCount = (totalUsersCount: number) => ({
     type: SET_TOTAL_USERS_COUNT,
     payload: {totalUsersCount}
-}) as const;
-export const setFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, payload: {isFetching}}) as const;
+} as const);
+export const setFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, payload: {isFetching}} as const);
