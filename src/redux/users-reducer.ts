@@ -4,6 +4,7 @@ const SET_USERS = 'SET_USERS-USERS';
 const SET_CURRENT_PAGE = 'SET-SET_CURRENT_PAGE-PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 export type UserReducerType = {
     users: User[]
@@ -11,14 +12,10 @@ export type UserReducerType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: number[]
 }
 
-export interface Photos {
-    small: string;
-    large: string;
-}
-
-export interface User {
+export type User = {
     name: string;
     id: number;
     uniqueUrlName?: string;
@@ -27,7 +24,12 @@ export interface User {
     followed: boolean;
 }
 
-export interface GetUsersResponse {
+export type Photos = {
+    small: string;
+    large: string;
+}
+
+export type GetUsersResponse = {
     items: User[];
     totalCount: number;
     error?: any;
@@ -38,13 +40,13 @@ const initialState: UserReducerType = {
     pageSize: 100,
     totalUsersCount: 21,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    followingInProgress: [1,2,3]
 };
 
 export const usersReducer = (state: UserReducerType = initialState, action: UsersACType): UserReducerType => {
     switch (action.type) {
         case FOLLOW: {
-            console.log(action.payload.userID);
             return {
                 ...state,
                 users: state.users.map((u: User) => u.id === action.payload.userID ? {
@@ -86,6 +88,15 @@ export const usersReducer = (state: UserReducerType = initialState, action: User
                 isFetching: action.payload.isFetching
             };
         }
+        case TOGGLE_IS_FOLLOWING_PROGRESS: {
+            console.log('11');
+            return {
+                ...state,
+                followingInProgress: action.payload.status
+                    ?[...state.followingInProgress,action.payload.userID]
+                    :state.followingInProgress.filter((id:number)=>id!=action.payload.userID)
+            };
+        }
         default: {
             return state;
         }
@@ -98,14 +109,28 @@ export type UsersACType = ReturnType<typeof setUnfollow>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof setFetching>
+    | ReturnType<typeof setFollowProgress>
 
 
 export const setFollow = (userID: number) => ({type: FOLLOW, payload: {userID}} as const);
-export const setUnfollow = (userID: number) => ({type: UNFOLLOW, payload: {userID}} as const);
+export const setUnfollow = (userID: number) => ({
+    type: UNFOLLOW,
+    payload: {userID}
+} as const);
 export const setUsers = (users: User[]) => ({type: SET_USERS, payload: {users}} as const);
-export const setCurrentPage = (pageNumber: number) => ({type: SET_CURRENT_PAGE, payload: {pageNumber}} as const);
+export const setCurrentPage = (pageNumber: number) => ({
+    type: SET_CURRENT_PAGE,
+    payload: {pageNumber}
+} as const);
 export const setTotalUsersCount = (totalUsersCount: number) => ({
     type: SET_TOTAL_USERS_COUNT,
     payload: {totalUsersCount}
 } as const);
-export const setFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, payload: {isFetching}} as const);
+export const setFetching = (isFetching: boolean) => ({
+    type: TOGGLE_IS_FETCHING,
+    payload: {isFetching}
+} as const);
+export const setFollowProgress = (status: boolean,userID:number) => ({
+    type: TOGGLE_IS_FOLLOWING_PROGRESS,
+    payload: {status,userID}
+} as const);

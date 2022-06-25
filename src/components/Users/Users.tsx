@@ -5,18 +5,18 @@ import {NavLink} from 'react-router-dom';
 import {User} from '../../redux/users-reducer';
 import {followAPI} from '../../API/FollowAPI';
 
-
 type UserPropsType = {
+    pageSize: number
+    currentPage: number
+    totalUsersCount: number
+    followingInProgress: number[]
     users: User[]
-    onPageChanged: (pageNumber: number) => void
     setFollow: (userID: number) => void
     setUnfollow: (userID: number) => void
+    setFollowProgress: (status: boolean, userID: number) => void
+    onPageChanged: (pageNumber: number) => void
     setCurrentPage: (pageNumber: number) => void
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
 }
-
 
 const Users = (props: UserPropsType) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -26,20 +26,26 @@ const Users = (props: UserPropsType) => {
     }
 
     const followUserHandle = (userID: number) => {
-        followAPI.followUser(userID).then((response: any) => {
-            if (response.data.resultCode === 0) {
-                props.setFollow(userID);
-            }
-        });
+        props.setFollowProgress(true, userID);
+        followAPI.followUser(userID)
+            .then((response: any) => {
+                if (response.data.resultCode === 0) {
+                    props.setFollow(userID);
+                }
+                props.setFollowProgress(false, userID);
+
+            });
     };
     const unfollowUserHandle = (userID: number) => {
-        followAPI.unfollowUser(userID).then((response: any) => {
-            if (response.data.resultCode === 0) {
-                props.setUnfollow(userID);
-            }
-        });
+        props.setFollowProgress(true, userID);
+        followAPI.unfollowUser(userID)
+            .then((response: any) => {
+                if (response.data.resultCode === 0) {
+                    props.setUnfollow(userID);
+                }
+                props.setFollowProgress(false, userID);
+            });
     };
-
 
     return (
         <div>
@@ -48,7 +54,9 @@ const Users = (props: UserPropsType) => {
                     return <span
                         key={p}
                         onClick={() => props.onPageChanged(p)}
-                        className={props.currentPage === p ? s.selected : s.item}
+                        className={props.currentPage === p
+                            ? s.selected
+                            : s.item}
                     >{`${p} `}</span>;
                 })}
 
@@ -56,15 +64,19 @@ const Users = (props: UserPropsType) => {
                     <span><div>
                         <NavLink to={`/profile/${u.id}`}>
                         <img alt={'userAvatar'}
-                             src={u.photos.small ? u.photos.small : userPhoto}
+                             src={u.photos.small
+                                 ? u.photos.small
+                                 : userPhoto}
                              className={s.User_img}/>
                     </NavLink>
                     </div>
                         <div>
                                 {!u.followed
                                     ? <button
+                                        disabled={props.followingInProgress.some(id => id === u.id)}
                                         onClick={() => followUserHandle(u.id)}>Follow</button>
                                     : <button
+                                        disabled={props.followingInProgress.some(id => id === u.id)}
                                         onClick={() => unfollowUserHandle(u.id)}>Unfollow</button>}
                         </div>
                     </span>

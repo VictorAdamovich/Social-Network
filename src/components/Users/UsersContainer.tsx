@@ -4,11 +4,11 @@ import {
     setCurrentPage,
     setFetching,
     setFollow,
+    setFollowProgress,
     setTotalUsersCount,
     setUnfollow,
     setUsers,
     User,
-    UserReducerType
 } from '../../redux/users-reducer';
 import React from 'react';
 import Users from './Users';
@@ -21,11 +21,13 @@ export type UserContainerPropsType = {
     currentPage: number
     isFetching: boolean
     totalUsersCount: number
+    followingInProgress:number[]
     setUsers: (users: User[]) => void
     setFollow: (userID: number) => void
     setUnfollow: (userID: number) => void
     setCurrentPage: (pageNumber: number) => void
     setFetching: (isFetching: boolean) => void
+    setFollowProgress:(status: boolean,userID:number)=>void
     setTotalUsersCount: (totalUsersCount: number) => void
 }
 
@@ -59,34 +61,38 @@ export class UsersContainer extends React.Component<UserContainerPropsType, any>
                     : <Users
                         users={this.props.users}
                         pageSize={this.props.pageSize}
-                        totalUsersCount={this.props.totalUsersCount}
                         setFollow={this.props.setFollow}
                         setUnfollow={this.props.setUnfollow}
-                        setCurrentPage={this.props.setCurrentPage}
                         currentPage={this.props.currentPage}
+                        setCurrentPage={this.props.setCurrentPage}
+                        totalUsersCount={this.props.totalUsersCount}
+                        followingInProgress={this.props.followingInProgress}
                         onPageChanged={this.onPageChanged}
+                        setFollowProgress={this.props.setFollowProgress}
                     />}
             </>
         );
     }
 }
 
-const mapStateToProps = (state: RootReduxType): UserReducerType => {
+const mapStateToProps = (state: RootReduxType) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         isFetching: state.usersPage.isFetching,
         currentPage: state.usersPage.currentPage,
-        totalUsersCount: state.usersPage.totalUsersCount
+        totalUsersCount: state.usersPage.totalUsersCount,
+        followingInProgress:state.usersPage.followingInProgress
     };
 
 };
 
 export default connect(mapStateToProps, {
     setUsers,
-    setUnfollow,
     setFollow,
-    setCurrentPage,
+    setUnfollow,
     setFetching,
+    setCurrentPage,
+    setFollowProgress,
     setTotalUsersCount
 })(UsersContainer);
