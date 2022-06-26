@@ -1,3 +1,7 @@
+import {profileAPI} from '../API/ProfileAPI';
+import axios from 'axios';
+import {GetUsersResponse} from './users-reducer';
+
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -22,7 +26,7 @@ export type ProfilePageReducerType = {
 }
 
 
-export interface Contacts {
+export type Contacts = {
     facebook: string;
     website?: string;
     vk: string;
@@ -33,12 +37,12 @@ export interface Contacts {
     mainLink?: string;
 }
 
-export interface Photos {
+export type Photos = {
     small: string;
     large: string;
 }
 
-export interface ProfileType {
+export type ProfileType = {
     aboutMe: string;
     contacts: Contacts;
     lookingForAJob: boolean;
@@ -88,7 +92,22 @@ export const profileReducer = (state: ProfilePageReducerType = initialState, act
 };
 
 export const addPost = () => ({type: ADD_POST}) as const;
-export const updateNewPostText = (text: string) => ({type: UPDATE_NEW_POST_TEXT, payload: {text}}) as const;
-export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, payload: {profile}}) as const;
+export const updateNewPostText = (text: string) => ({
+    type: UPDATE_NEW_POST_TEXT,
+    payload: {text}
+}) as const;
+export const setUserProfile = (profile: any) => ({
+    type: SET_USER_PROFILE,
+    payload: {profile}
+}) as const;
 
 
+export const setProfile = (userId: string) => {
+    return (dispatch: any) => {
+        profileAPI.setUserProfile(userId)
+            .then(res => {
+                console.dir(res);
+                dispatch(setUserProfile(res.data));
+            })
+    };
+};

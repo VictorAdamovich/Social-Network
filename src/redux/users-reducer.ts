@@ -1,3 +1,6 @@
+import {usersAPI} from '../API/UsersAPI';
+import {followAPI} from '../API/FollowAPI';
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS-USERS';
@@ -41,7 +44,7 @@ const initialState: UserReducerType = {
     totalUsersCount: 21,
     currentPage: 1,
     isFetching: true,
-    followingInProgress: [1,2,3]
+    followingInProgress: [1, 2, 3]
 };
 
 export const usersReducer = (state: UserReducerType = initialState, action: UsersACType): UserReducerType => {
@@ -89,12 +92,11 @@ export const usersReducer = (state: UserReducerType = initialState, action: User
             };
         }
         case TOGGLE_IS_FOLLOWING_PROGRESS: {
-            console.log('11');
             return {
                 ...state,
                 followingInProgress: action.payload.status
-                    ?[...state.followingInProgress,action.payload.userID]
-                    :state.followingInProgress.filter((id:number)=>id!=action.payload.userID)
+                    ? [...state.followingInProgress, action.payload.userID]
+                    : state.followingInProgress.filter((id: number) => id !== action.payload.userID)
             };
         }
         default: {
@@ -130,7 +132,48 @@ export const setFetching = (isFetching: boolean) => ({
     type: TOGGLE_IS_FETCHING,
     payload: {isFetching}
 } as const);
-export const setFollowProgress = (status: boolean,userID:number) => ({
+export const setFollowProgress = (status: boolean, userID: number) => ({
     type: TOGGLE_IS_FOLLOWING_PROGRESS,
-    payload: {status,userID}
+    payload: {status, userID}
 } as const);
+
+
+export const getUsers = (currentPage: number, pageSize: number) => {
+    return (dispatch: any) => {
+        dispatch(setFetching(true));
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(res => {
+                dispatch(setFetching(false));
+                dispatch(setUsers(res.items));
+                dispatch(setTotalUsersCount(res.totalCount))
+                ;
+            });
+    };
+};
+
+export const followUser = (userID: number) => {
+    return (dispatch: any) => {
+        dispatch(setFollowProgress(true, userID));
+        followAPI.followUser(userID)
+            .then((response: any) => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setFollow(userID));
+                }
+                dispatch(setFollowProgress(false, userID));
+            });
+    };
+};
+
+export const unfollowUser = (userID: number) => {
+    return (dispatch: any) => {
+        dispatch(setFollowProgress(true, userID));
+        followAPI.unfollowUser(userID)
+            .then((response: any) => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setUnfollow(userID));
+                }
+                dispatch(setFollowProgress(false, userID));
+            });
+
+    };
+};

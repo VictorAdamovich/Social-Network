@@ -1,10 +1,12 @@
+import {authAPI} from '../API/AuthAPI';
+
 const SET_USER_DATA = 'SET_USER_DATA';
 
 export type dataAuthStateType = {
     id: number
     login: string
     email: string
-    isAuth:boolean
+    isAuth?:boolean
 }
 
 let initialState: dataAuthStateType = {
@@ -35,3 +37,20 @@ export const setAuthUserDate = ({id, login, email}: dataAuthStateType) => ({
     type: SET_USER_DATA,
     payload: {id, login, email}
 }) as const;
+
+
+export const getAuth=()=>{
+    return (dispatch:any)=>{
+        authAPI.getAuth()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    let {id, login, email} = response.data.data;
+                    dispatch(setAuthUserDate({id, login, email}));
+                }
+            });
+    }
+
+
+
+
+}

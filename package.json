@@ -30,6 +30,7 @@
     "react-redux-typescript": "^3.0.0-rc.3",
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
+    "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.5",
     "typescript": "^4.7.4",
     "web-vitals": "^2.1.0"

@@ -1,8 +1,9 @@
-import {combineReducers, legacy_createStore as createStore, Store} from 'redux';
+import {applyMiddleware,combineReducers, legacy_createStore as createStore, Store} from 'redux';
 import {ProfilePageACType, profileReducer} from './profile-reducer';
 import {DialogsPageACType, dialogsReducer} from './dialogs-reducer';
 import {UsersACType, usersReducer} from './users-reducer';
 import {AuthACType, authReducer} from './auth-reducer';
+import thunkMiddleware from 'redux-thunk'
 
 export type ActionsType = DialogsPageACType | ProfilePageACType | UsersACType | AuthACType
 
@@ -15,7 +16,7 @@ let reducers = combineReducers({
 
 export type RootReduxType = ReturnType<typeof reducers>
 
-export let store: Store<RootReduxType, ActionsType> = createStore(reducers);
+export let store: Store<RootReduxType, ActionsType> = createStore(reducers,applyMiddleware(thunkMiddleware));
 
 // @ts-ignore
 window.store = store
