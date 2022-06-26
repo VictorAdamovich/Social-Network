@@ -10,6 +10,8 @@ type ProfilePropsType = {
 
 
 const Profile = (props: ProfilePropsType) => {
+
+
     return (
         <div className={c.content}>
             <ProfileInfo profile={props.profile}/>

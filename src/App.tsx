@@ -10,6 +10,7 @@ import UsersContainer from './components/Users/UsersContainer';
 import Grid from '@mui/material/Grid';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 
 
 export const App = () => {
@@ -34,6 +35,7 @@ export const App = () => {
                             <Route path="/news/" element={<News/>}/>
                             <Route path="/music/" element={<Music/>}/>
                             <Route path="/settings/" element={<Settings/>}/>
+                            <Route path="/login" element={<Login/>}/>
                         </Routes>
                     </Grid>
 

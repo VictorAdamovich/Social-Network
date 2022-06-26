@@ -4,10 +4,11 @@ import Profile from './Profile';
 import {connect} from 'react-redux';
 import {ProfileType, setProfile} from '../../redux/profile-reducer';
 import {RootReduxType} from '../../redux/redux-store';
-import {useParams} from 'react-router-dom';
+import {Navigate, useParams} from 'react-router-dom';
 
 type MapStateToPropsType = {
     profile: ProfileType | null
+    isAuth: boolean | undefined
 }
 
 type MapDispatchToPropsType = {
@@ -27,6 +28,7 @@ const ProfileContainer = (props: PropsType) => {
 
     let {userId} = useParams<string>();
 
+    if (props.isAuth==false) return <Navigate to="/login"/>;
     return (
         <div className={c.content}>
             <Profile
@@ -39,7 +41,8 @@ const ProfileContainer = (props: PropsType) => {
 
 
 let mapStateToProps = (state: RootReduxType): MapStateToPropsType => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    isAuth: state.auth.isAuth
 });
 
 export default connect(mapStateToProps, {

@@ -7,11 +7,13 @@ import {RootReduxType} from '../../redux/redux-store';
 
 type MapStateToPropsType = {
     state: DialogPageType
+    isAuth:boolean | undefined
 }
 
 let mapStateToProps = (state: RootReduxType): MapStateToPropsType => {
     return {
-        state: state.dialogsPage
+        state: state.dialogsPage,
+        isAuth:state.auth.isAuth
     };
 };
 
