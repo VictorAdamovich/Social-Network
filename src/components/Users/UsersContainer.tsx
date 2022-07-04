@@ -4,7 +4,7 @@ import {followUser, getUsers, unfollowUser, User} from '../../redux/users-reduce
 import React from 'react';
 import Users from './Users';
 import {Preloader} from '../common/Preloader/Preloader';
-import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
+import {WithAuthRedirect} from '../../HOCs/WithAuthRedirect';
 
 export type UserContainerPropsType = {
     users: User[]
@@ -62,7 +62,6 @@ const mapStateToProps = (state: RootReduxType) => {
 
 
 let UsersAuthRedirectComponent = WithAuthRedirect(UsersContainer);
-
 
 export default connect(mapStateToProps, {
     followUser,

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {ProfileType, setProfile} from '../../redux/profile-reducer';
 import {RootReduxType} from '../../redux/redux-store';
 import {useParams} from 'react-router-dom';
-import {WithAuthRedirect} from '../../hoc/WithAuthRedirect';
+import {WithAuthRedirect} from '../../HOCs/WithAuthRedirect';
 
 type MapStateToPropsType = {
     profile: ProfileType | null

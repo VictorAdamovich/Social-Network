@@ -17,11 +17,11 @@ export const App = () => {
     return (
         <>
             <Grid container>
-                <Grid item xs={1}>
+                <Grid item xs={2}>
                     <Navbar/>
                 </Grid>
 
-                <Grid item xs={11}>
+                <Grid item xs={10}>
                     <Grid item xs={12}>
                         <HeaderContainer/>
                     </Grid>
