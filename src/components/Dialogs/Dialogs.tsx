@@ -26,7 +26,6 @@ const Dialogs = (props: DialogsPropsType) => {
     const addMessage = () => props.addNewMessage();
     const onChangeHandler = () => newMessageEl.current !== null && props.updateNewMessage(newMessageEl.current.value);
 
-    if (props.isAuth==false) return <Navigate to="/login"/>;
 
     return (
         <div className={s.dialogs}>
@@ -47,5 +46,7 @@ const Dialogs = (props: DialogsPropsType) => {
         </div>
     );
 };
+
+
 
 export default Dialogs;
