@@ -3,9 +3,12 @@ import React from 'react';
 import {ProfileType} from '../../../redux/profile-reducer';
 import {Preloader} from '../../common/Preloader/Preloader';
 import {ProfileStatus} from './ProfileStatus';
+import baseIMG from '../../../assets/images/user.png'
 
 type ProfileInfoType = {
     profile: ProfileType | null
+    status:string
+    updateUserStatus:(status:string)=>void
 }
 
 export const ProfileInfo = (props: ProfileInfoType) => {
@@ -17,11 +20,14 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                 <div className={c.profile}>
                     <div>
                         <h2>{props.profile.fullName}</h2>
-                        <ProfileStatus status={'Hello'}/>
+                        <ProfileStatus
+                            status={props.status}
+                            updateUserStatus={props.updateUserStatus}
+                        />
                     </div>
 
                     <img
-                        src={props.profile.photos.large}
+                        src={props.profile.photos.large || baseIMG}
                         alt="userPhoto"/>
                 </div>
             </div>

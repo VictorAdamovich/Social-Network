@@ -42,9 +42,9 @@ export const setAuthUserDate = ({id, login, email}: dataAuthStateType) => ({
 export const getAuth=()=>{
     return (dispatch:any)=>{
         authAPI.getAuth()
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    let {id, login, email} = response.data.data;
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    let {id, login, email} = res.data.data;
                     dispatch(setAuthUserDate({id, login, email}));
                 }
             });

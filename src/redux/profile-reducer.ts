@@ -1,15 +1,15 @@
 import {profileAPI} from '../API/ProfileAPI';
-import axios from 'axios';
-import {GetUsersResponse} from './users-reducer';
 
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_USER_STATUS = 'SET_USER_STATUS';
 
 export type ProfilePageACType =
     | ReturnType<typeof addPost>
     | ReturnType<typeof updateNewPostText>
     | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setUserStatus>
 
 
 export type PostType = {
@@ -23,6 +23,7 @@ export type ProfilePageReducerType = {
     posts: PostType[]
     newPostText: string
     profile: ProfileType | null
+    status: string
 }
 
 
@@ -53,13 +54,14 @@ export type ProfileType = {
 }
 
 
-let initialState = {
+let initialState: ProfilePageReducerType = {
     posts: [
         {id: 1, message: 'Hi,how are you?', likeCount: 4},
         {id: 2, message: 'Its my first post?', likeCount: 11}
     ],
     newPostText: '',
-    profile: null
+    profile: null,
+    status: ''
 };
 
 export const profileReducer = (state: ProfilePageReducerType = initialState, action: ProfilePageACType): ProfilePageReducerType => {
@@ -85,12 +87,18 @@ export const profileReducer = (state: ProfilePageReducerType = initialState, act
             };
 
         }
+        case SET_USER_STATUS: {
+            return {
+                ...state,
+                status: action.status
+            };
+        }
         default: {
             return state;
         }
     }
 };
-
+//AC
 export const addPost = () => ({type: ADD_POST}) as const;
 export const updateNewPostText = (text: string) => ({
     type: UPDATE_NEW_POST_TEXT,
@@ -101,13 +109,37 @@ export const setUserProfile = (profile: any) => ({
     payload: {profile}
 }) as const;
 
+export const setUserStatus = (status: string) => ({
+    type: SET_USER_STATUS,
+    status
+} as const);
 
+//TC
 export const setProfile = (userId: string) => {
     return (dispatch: any) => {
-        profileAPI.setUserProfile(userId)
+        profileAPI.getUserProfile(userId)
             .then(res => {
-                console.dir(res);
                 dispatch(setUserProfile(res.data));
-            })
+            });
     };
 };
+export const getUserStatusTC = (userId: string) => {
+    return (dispatch: any) => {
+        profileAPI.getUserStatus(userId)
+            .then(res => {
+                dispatch(setUserStatus(res.data));
+            });
+    };
+};
+
+export const updateUserStatusTC = (status: string) => {
+    return (dispatch: any) => {
+        profileAPI.updateUserStatus(status)
+            .then(res => {
+                if (res.data.resultCode===0) {
+                    dispatch(setUserStatus(status));
+                }
+            });
+    };
+};
+
