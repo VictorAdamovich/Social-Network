@@ -2,21 +2,20 @@ import React from 'react';
 import s from './dialog.module.css';
 import {DialogItem} from './DialogsItem/DialogItem';
 import {Message} from './Message/Message';
-import {DialogPageType, DialogsType, MessagesType} from '../../redux/dialogs-reducer';
+import {DialogsType, MessagesType} from '../../redux/dialogs-reducer';
 import {AddTextForm} from './Message/AddMessageForm';
+import {useAppSelector} from '../../redux/store';
 
-type DialogsPropsType = {
-    isAuth: boolean
-    state: DialogPageType
-    addMessage: (message: string) => void
-}
 
-const Dialogs = (props: DialogsPropsType) => {
+const Dialogs = () => {
+    const dialogs = useAppSelector(state => state.dialogsPage.dialogs);
+    const messages = useAppSelector(state => state.dialogsPage.messages);
 
-    let dialogsElements = props.state.dialogs.map((d: DialogsType) => <DialogItem
+
+    let dialogsElements = dialogs.map((d: DialogsType) => <DialogItem
         key={d.id} id={d.id} name={d.name}
         avatar={d.avatar}/>);
-    let massagesElements = props.state.messages.map((m: MessagesType) => <Message
+    let massagesElements = messages.map((m: MessagesType) => <Message
         key={m.id} id={m.id} message={m.message}/>);
 
 

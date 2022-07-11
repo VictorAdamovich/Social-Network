@@ -4,11 +4,11 @@ import {Route, Routes} from 'react-router-dom';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
-import {DialogContainer} from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
-import ProfileContainer from './components/Profile/ProfileContainer';
 import Login from './components/Login/Login';
 import {Header} from './components/Header/Header';
+import Dialogs from './components/Dialogs/Dialogs';
+import Profile from './components/Profile/Profile';
 
 
 export const App = () => {
@@ -19,9 +19,9 @@ export const App = () => {
             </div>
             <div>
                 <Routes>
-                    <Route path="/message/*" element={<DialogContainer/>}/>
-                    <Route path="/profile/" element={<ProfileContainer/>}/>
-                    <Route path="/profile/:userId" element={<ProfileContainer/>}/>
+                    <Route path="/message/*" element={<Dialogs/>}/>
+                    <Route path="/profile/" element={<Profile/>}/>
+                    <Route path="/profile/:userId" element={<Profile/>}/>
                     <Route path="/users" element={<UsersContainer/>}/>
                     <Route path="/news/" element={<News/>}/>
                     <Route path="/music/" element={<Music/>}/>

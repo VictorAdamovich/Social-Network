@@ -1,33 +1,27 @@
 import c from './ProfileInfo.module.css';
 import React from 'react';
-import {ProfileType} from '../../../redux/profile-reducer';
 import {Preloader} from '../../common/Preloader/Preloader';
 import {ProfileStatus} from './ProfileStatus';
-import baseIMG from '../../../assets/images/user.png'
+import baseIMG from '../../../assets/images/user.png';
+import {useAppSelector} from '../../../redux/store';
 
-type ProfileInfoType = {
-    profile: ProfileType | null
-    status:string
-    updateUserStatus:(status:string)=>void
-}
 
-export const ProfileInfo = (props: ProfileInfoType) => {
-    if (!props.profile) {
+export const ProfileInfo = () => {
+    const profile = useAppSelector(state => state.profilePage.profile);
+
+    if (!profile) {
         return <Preloader/>;
     } else {
         return <div>
             <div className={c.content}>
                 <div className={c.profile}>
                     <div>
-                        <h2>{props.profile.fullName}</h2>
-                        <ProfileStatus
-                            status={props.status}
-                            updateUserStatus={props.updateUserStatus}
-                        />
+                        <h2>{profile.fullName}</h2>
+                        <ProfileStatus/>
                     </div>
 
                     <img
-                        src={props.profile.photos.large || baseIMG}
+                        src={profile.photos.large || baseIMG}
                         alt="userPhoto"/>
                 </div>
             </div>

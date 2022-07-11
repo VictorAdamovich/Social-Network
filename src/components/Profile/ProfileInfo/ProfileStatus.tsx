@@ -1,14 +1,17 @@
 import React, {ChangeEvent, useState} from 'react';
+import {useAppSelector} from '../../../redux/store';
+import {updateUserStatusTC} from '../../../redux/profile-reducer';
 
-export const ProfileStatus = (props: ProfileStatusType) => {
-
+export const ProfileStatus = () => {
+    const profileStatus = useAppSelector(state => state.profilePage.status);
+    const updateUserStatusHandle = (status: string) => updateUserStatusTC(status);
 
     let [editeMode, setEditeMode] = useState<boolean>(false);
-    let [status, setStatus] = useState<string>(props.status);
+    let [status, setStatus] = useState<string>(profileStatus);
 
     const editModeHandle = () => {
         setEditeMode(!editeMode);
-        props.updateUserStatus(status);
+        updateUserStatusHandle(status);
     };
     const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) => setStatus(e.currentTarget.value);
 
@@ -27,13 +30,9 @@ export const ProfileStatus = (props: ProfileStatusType) => {
                 </div>
                 : <div>
                     <span
-                        onDoubleClick={editModeHandle}>{props.status || 'Нет статуса'}</span>
+                        onDoubleClick={editModeHandle}>{profileStatus || 'Нет статуса'}</span>
                 </div>}
         </div>
     );
 };
 
-type ProfileStatusType = {
-    status: string
-    updateUserStatus: (status: string) => void
-}

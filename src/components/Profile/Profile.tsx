@@ -1,24 +1,29 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import c from './Profile.module.css';
-import {ProfileType} from '../../redux/profile-reducer';
+import {getUserStatusTC, setProfile} from '../../redux/profile-reducer';
 import {MyPosts} from './MyPosts/Posts/MyPosts';
+import {useParams} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 
-type ProfilePropsType = {
-    profile: ProfileType | null
-    status: string
-    updateUserStatus: (status: string) => void
-}
+const Profile = () => {
+    const dispatch: any = useDispatch();
+    const setProfileHandle = (userId: string) => dispatch(setProfile(userId));
+    const getUserStatusHande = (userId: string) => dispatch(getUserStatusTC(userId));
 
+    let {userId} = useParams<string>();
 
-const Profile = (props: ProfilePropsType) => {
+    useEffect(() => {
+        if (userId === undefined) {
+            userId = '24020';
+        }
+        setProfileHandle(userId);
+        getUserStatusHande(userId);
+    }, []);
+
     return (
         <div className={c.content}>
-            <ProfileInfo
-                profile={props.profile}
-                status={props.status}
-                updateUserStatus={props.updateUserStatus}
-            />
+            <ProfileInfo/>
             <MyPosts/>
         </div>
     );
