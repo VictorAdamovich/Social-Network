@@ -4,6 +4,7 @@ import {DialogsPageACType, dialogsReducer} from './dialogs-reducer';
 import {UsersACType, usersReducer} from './users-reducer';
 import {AuthACType, authReducer} from './auth-reducer';
 import thunkMiddleware from 'redux-thunk'
+import {TypedUseSelectorHook, useSelector} from 'react-redux';
 
 export type ActionsType = DialogsPageACType | ProfilePageACType | UsersACType | AuthACType
 
@@ -18,6 +19,5 @@ export type RootReduxType = ReturnType<typeof reducers>
 
 export let store: Store<RootReduxType, ActionsType> = createStore(reducers,applyMiddleware(thunkMiddleware));
 
-// @ts-ignore
-window.store = store
 
+export const useAppSelector: TypedUseSelectorHook<RootReduxType> = useSelector

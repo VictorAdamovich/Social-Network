@@ -1,30 +1,4 @@
 const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
-const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
-
-
-export type DialogsPageACType =
-    ReturnType<typeof updateNewMessage> |
-    ReturnType<typeof addNewMessage>
-
-
-export type MessagesType = {
-    id: number
-    message: string
-}
-
-export type DialogsType = {
-    id: number
-    name: string
-    avatar: string
-}
-
-
-export type DialogPageType = {
-    dialogs: DialogsType[]
-    messages: MessagesType[]
-    newMessageText: string
-}
-
 
 let initialState: DialogPageType = {
     dialogs: [
@@ -61,7 +35,6 @@ let initialState: DialogPageType = {
         {id: 4, message: 'Yo'},
         {id: 5, message: 'Yo '}
     ],
-    newMessageText: ''
 };
 
 export const dialogsReducer = (state: DialogPageType = initialState, action: DialogsPageACType): DialogPageType => {
@@ -69,14 +42,7 @@ export const dialogsReducer = (state: DialogPageType = initialState, action: Dia
         case ADD_NEW_MESSAGE: {
             return {
                 ...state,
-                messages: [...state.messages, {id: 6, message: state.newMessageText}],
-                newMessageText: ''
-            };
-        }
-        case UPDATE_NEW_MESSAGE: {
-            return {
-                ...state,
-                newMessageText: action.payload.text,
+                messages: [...state.messages, {id: 6, message: action.message}],
             };
         }
         default: {
@@ -85,9 +51,27 @@ export const dialogsReducer = (state: DialogPageType = initialState, action: Dia
     }
 };
 
-export const updateNewMessage = (text: string) => {
-    return {type: UPDATE_NEW_MESSAGE, payload: {text}} as const;
-};
+export const addNewMessage = (message: string) => ({
+    type: ADD_NEW_MESSAGE,
+    message
+} as const);
 
-export const addNewMessage = () => ({type: ADD_NEW_MESSAGE} as const);
+
+export type DialogsPageACType = ReturnType<typeof addNewMessage>
+
+export type MessagesType = {
+    id: number
+    message: string
+}
+
+export type DialogsType = {
+    id: number
+    name: string
+    avatar: string
+}
+
+export type DialogPageType = {
+    dialogs: DialogsType[]
+    messages: MessagesType[]
+}
 

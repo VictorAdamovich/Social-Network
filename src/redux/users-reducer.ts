@@ -9,44 +9,6 @@ const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
-export type UserReducerType = {
-    users: User[]
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: number[]
-}
-
-export type User = {
-    name: string;
-    id: number;
-    uniqueUrlName?: string;
-    photos: Photos;
-    status: string;
-    followed: boolean;
-}
-
-export type Photos = {
-    small: string;
-    large: string;
-}
-
-export type GetUsersResponse = {
-    items: User[];
-    totalCount: number;
-    error?: any;
-}
-
-const initialState: UserReducerType = {
-    users: [],
-    pageSize: 100,
-    totalUsersCount: 21,
-    currentPage: 1,
-    isFetching: true,
-    followingInProgress: [1, 2, 3]
-};
-
 export const usersReducer = (state: UserReducerType = initialState, action: UsersACType): UserReducerType => {
     switch (action.type) {
         case FOLLOW: {
@@ -143,7 +105,6 @@ export const getUsers = (currentPage: number, pageSize: number) => {
         dispatch(setFetching(true));
         usersAPI.getUsers(currentPage, pageSize)
             .then(res => {
-                console.dir(res)
                 dispatch(setFetching(false));
                 dispatch(setUsers(res.items));
                 dispatch(setTotalUsersCount(res.totalCount))
@@ -157,7 +118,7 @@ export const followUser = (userID: number) => {
         dispatch(setFollowProgress(true, userID));
         followAPI.followUser(userID)
             .then((res: any) => {
-                console.log(res)
+                console.log(res);
                 if (res.data.resultCode === 0) {
                     dispatch(setFollow(userID));
                 }
@@ -180,3 +141,43 @@ export const unfollowUser = (userID: number) => {
 
     };
 };
+
+
+export type UserReducerType = {
+    users: User[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    followingInProgress: number[]
+}
+
+export type User = {
+    name: string;
+    id: number;
+    uniqueUrlName?: string;
+    photos: Photos;
+    status: string;
+    followed: boolean;
+}
+
+export type Photos = {
+    small: string;
+    large: string;
+}
+
+export type GetUsersResponse = {
+    items: User[];
+    totalCount: number;
+    error?: any;
+}
+
+const initialState: UserReducerType = {
+    users: [],
+    pageSize: 100,
+    totalUsersCount: 21,
+    currentPage: 1,
+    isFetching: true,
+    followingInProgress: [1, 2, 3]
+};
+

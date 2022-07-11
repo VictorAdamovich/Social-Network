@@ -1,13 +1,13 @@
 import React from 'react';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import c from './Profile.module.css';
-import {MyPostsContainer} from './MyPosts/Posts/MyPostsContainer';
 import {ProfileType} from '../../redux/profile-reducer';
+import {MyPosts} from './MyPosts/Posts/MyPosts';
 
 type ProfilePropsType = {
     profile: ProfileType | null
-    status:string
-    updateUserStatus:(status:string)=>void
+    status: string
+    updateUserStatus: (status: string) => void
 }
 
 
@@ -19,7 +19,7 @@ const Profile = (props: ProfilePropsType) => {
                 status={props.status}
                 updateUserStatus={props.updateUserStatus}
             />
-            <MyPostsContainer/>
+            <MyPosts/>
         </div>
     );
 };

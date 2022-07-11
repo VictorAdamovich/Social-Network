@@ -8,22 +8,8 @@ import {
     setProfile,
     updateUserStatusTC
 } from '../../redux/profile-reducer';
-import {RootReduxType} from '../../redux/redux-store';
+import {RootReduxType} from '../../redux/store';
 import {useParams} from 'react-router-dom';
-
-type MapStateToPropsType = {
-    profile: ProfileType | null
-    status: string
-}
-
-type MapDispatchToPropsType = {
-    setProfile: (userId: string) => void
-    getUserStatusTC: (userId: string) => void
-    updateUserStatusTC: (status: string) => void
-
-}
-
-type PropsType = MapStateToPropsType & MapDispatchToPropsType
 
 
 const ProfileContainer = (props: PropsType) => {
@@ -49,15 +35,26 @@ const ProfileContainer = (props: PropsType) => {
     );
 };
 
-
 let mapStateToProps = (state: RootReduxType): MapStateToPropsType => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status
 });
-
 
 export default connect(mapStateToProps, {
     setProfile,
     getUserStatusTC,
     updateUserStatusTC
 })(ProfileContainer);
+
+type MapStateToPropsType = {
+    profile: ProfileType | null
+    status: string
+}
+
+type MapDispatchToPropsType = {
+    setProfile: (userId: string) => void
+    getUserStatusTC: (userId: string) => void
+    updateUserStatusTC: (status: string) => void
+}
+
+type PropsType = MapStateToPropsType & MapDispatchToPropsType

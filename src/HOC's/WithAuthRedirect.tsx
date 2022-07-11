@@ -1,6 +1,6 @@
 import {Navigate} from 'react-router-dom';
 import React from 'react';
-import {RootReduxType} from '../redux/redux-store';
+import {RootReduxType} from '../redux/store';
 import { connect } from 'react-redux';
 
 

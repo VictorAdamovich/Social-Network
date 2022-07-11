@@ -1,10 +1,10 @@
 import {connect} from 'react-redux';
-import {RootReduxType} from '../../redux/redux-store';
+import {RootReduxType} from '../../redux/store';
 import {followUser, getUsers, unfollowUser, User} from '../../redux/users-reducer';
 import React from 'react';
 import Users from './Users';
 import {Preloader} from '../common/Preloader/Preloader';
-import {WithAuthRedirect} from '../../HOCs/WithAuthRedirect';
+import {WithAuthRedirect} from '../../HOC\'s/WithAuthRedirect';
 
 export type UserContainerPropsType = {
     users: User[]
