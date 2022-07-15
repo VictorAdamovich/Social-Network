@@ -1,10 +1,12 @@
 import React, {ChangeEvent, useState} from 'react';
 import {useAppSelector} from '../../../redux/store';
 import {updateUserStatusTC} from '../../../redux/profile-reducer';
+import {useDispatch} from 'react-redux';
 
 export const ProfileStatus = () => {
+    const dispatch: any = useDispatch();
     const profileStatus = useAppSelector(state => state.profilePage.status);
-    const updateUserStatusHandle = (status: string) => updateUserStatusTC(status);
+    const updateUserStatusHandle = (status: string) => dispatch(updateUserStatusTC(status));
 
     let [editeMode, setEditeMode] = useState<boolean>(false);
     let [status, setStatus] = useState<string>(profileStatus);
@@ -15,7 +17,6 @@ export const ProfileStatus = () => {
     };
     const onChangeHandle = (e: ChangeEvent<HTMLInputElement>) => setStatus(e.currentTarget.value);
 
-
     return (
         <div>
             {editeMode
@@ -24,13 +25,12 @@ export const ProfileStatus = () => {
                            autoFocus={true}
                            value={status}
                            onChange={onChangeHandle}
-                           onDoubleClick={editModeHandle}
                            onBlur={editModeHandle}
                     />
                 </div>
                 : <div>
                     <span
-                        onDoubleClick={editModeHandle}>{profileStatus || 'Нет статуса'}</span>
+                        onDoubleClick={() => setEditeMode(!editeMode)}>{profileStatus || 'Нет статуса'}</span>
                 </div>}
         </div>
     );

@@ -1,5 +1,6 @@
 import {usersAPI} from '../API/UsersAPI';
 import {followAPI} from '../API/FollowAPI';
+import {Dispatch} from 'redux';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -101,24 +102,23 @@ export const setFollowProgress = (status: boolean, userID: number) => ({
 
 
 export const getUsers = (currentPage: number, pageSize: number) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch) => {
         dispatch(setFetching(true));
         usersAPI.getUsers(currentPage, pageSize)
             .then(res => {
+                dispatch(setCurrentPage(currentPage));
                 dispatch(setFetching(false));
                 dispatch(setUsers(res.items));
-                dispatch(setTotalUsersCount(res.totalCount))
-                ;
+                dispatch(setTotalUsersCount(res.totalCount));
             });
     };
 };
 
 export const followUser = (userID: number) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch) => {
         dispatch(setFollowProgress(true, userID));
         followAPI.followUser(userID)
             .then((res: any) => {
-                console.log(res);
                 if (res.data.resultCode === 0) {
                     dispatch(setFollow(userID));
                 }
@@ -128,11 +128,10 @@ export const followUser = (userID: number) => {
 };
 
 export const unfollowUser = (userID: number) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch) => {
         dispatch(setFollowProgress(true, userID));
         followAPI.unfollowUser(userID)
             .then((res: any) => {
-                console.log(res);
                 if (res.data.resultCode === 0) {
                     dispatch(setUnfollow(userID));
                 }
@@ -174,7 +173,7 @@ export type GetUsersResponse = {
 
 const initialState: UserReducerType = {
     users: [],
-    pageSize: 100,
+    pageSize: 20,
     totalUsersCount: 21,
     currentPage: 1,
     isFetching: true,

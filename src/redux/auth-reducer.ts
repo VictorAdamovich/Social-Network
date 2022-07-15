@@ -1,4 +1,4 @@
-import {authAPI} from '../API/AuthAPI';
+import {authAPI, LoginParamsType} from '../API/AuthAPI';
 import {Dispatch} from 'redux';
 
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -56,9 +56,9 @@ export const getAuth = () => {
     };
 };
 
-export const loginTC = (email: string, password: string, rememberMe: boolean) => {
+export const loginTC = (data:LoginParamsType) => {
     return (dispatch: any) => {
-        authAPI.login(email, password, rememberMe)
+        authAPI.login(data)
             .then(res => {
                 if (res.data.resultCode === 0) {
                     dispatch(getAuth());

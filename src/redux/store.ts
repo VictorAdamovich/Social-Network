@@ -3,9 +3,9 @@ import {ProfilePageACType, profileReducer} from './profile-reducer';
 import {DialogsPageACType, dialogsReducer} from './dialogs-reducer';
 import {UsersACType, usersReducer} from './users-reducer';
 import {AuthACType, authReducer} from './auth-reducer';
-import thunkMiddleware from 'redux-thunk'
+import thunkMiddleware, {ThunkDispatch} from 'redux-thunk';
 import {TypedUseSelectorHook, useSelector} from 'react-redux';
-
+import { AnyAction } from "redux";
 export type ActionsType = DialogsPageACType | ProfilePageACType | UsersACType | AuthACType
 
 let reducers = combineReducers({
@@ -21,3 +21,6 @@ export let store: Store<RootReduxType, ActionsType> = createStore(reducers,apply
 
 
 export const useAppSelector: TypedUseSelectorHook<RootReduxType> = useSelector
+
+
+export type AppDispatch = ThunkDispatch<RootReduxType, any, AnyAction>;

@@ -1,4 +1,5 @@
 import {profileAPI} from '../API/ProfileAPI';
+import {Dispatch} from 'redux';
 
 const ADD_POST = 'ADD_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -43,7 +44,7 @@ export const profileReducer = (state: ProfilePageReducerType = initialState, act
     }
 };
 //AC
-export const addPost = (post:string) => ({type: ADD_POST,post}) as const;
+export const addPost = (post: string) => ({type: ADD_POST, post}) as const;
 export const setUserProfile = (profile: any) => ({
     type: SET_USER_PROFILE,
     payload: {profile}
@@ -56,7 +57,7 @@ export const setUserStatus = (status: string) => ({
 
 //TC
 export const setProfile = (userId: string) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<ProfilePageACType>) => {
         profileAPI.getUserProfile(userId)
             .then(res => {
                 dispatch(setUserProfile(res.data));
@@ -64,7 +65,7 @@ export const setProfile = (userId: string) => {
     };
 };
 export const getUserStatusTC = (userId: string) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<ProfilePageACType>) => {
         profileAPI.getUserStatus(userId)
             .then(res => {
                 dispatch(setUserStatus(res.data));
@@ -73,16 +74,15 @@ export const getUserStatusTC = (userId: string) => {
 };
 
 export const updateUserStatusTC = (status: string) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<ProfilePageACType>) => {
         profileAPI.updateUserStatus(status)
             .then(res => {
-                if (res.data.resultCode===0) {
+                if (res.data.resultCode === 0) {
                     dispatch(setUserStatus(status));
                 }
             });
     };
 };
-
 
 export type ProfilePageACType =
     | ReturnType<typeof addPost>
