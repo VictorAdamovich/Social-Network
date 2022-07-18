@@ -4,7 +4,7 @@ import userPhoto from '../../assets/images/user.jpg';
 import {useDispatch} from 'react-redux';
 import {AppDispatch, useAppSelector} from '../../redux/store';
 import {getUsers, setFollow, setUnfollow} from 'redux/users-reducer';
-import {Card, Pagination} from '@mui/material';
+import {Card, CircularProgress, Pagination} from '@mui/material';
 import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -39,6 +39,13 @@ const Users = () => {
     useEffect(() => {
         dispatch(getUsers(currentPage, pageSize));
     }, []);
+
+    if (users.length < 1) {
+        return <div
+            style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
+            <CircularProgress/>
+        </div>;
+    }
 
     return (
         <div>

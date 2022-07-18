@@ -26,8 +26,8 @@ import Settings from './components/Settings/Settings';
 import {Login} from './components/Login/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {getAuth, logoutTS} from './redux/auth-reducer';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootReduxType} from './redux/store';
+import {useDispatch} from 'react-redux';
+import {useAppSelector} from './redux/store';
 import PersonIcon from '@mui/icons-material/Person';
 import ForumIcon from '@mui/icons-material/Forum';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
@@ -59,7 +59,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
     },
 });
 
- export const DrawerHeader = styled('div')(({theme}) => ({
+export const DrawerHeader = styled('div')(({theme}) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -110,6 +110,7 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})
 export default function App() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const isLoggined = useAppSelector((state) => state.auth.isAuth);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -119,8 +120,8 @@ export default function App() {
         setOpen(false);
     };
     const dispatch: any = useDispatch();
-    const userIsAuth = useSelector((state: RootReduxType) => state.auth.isAuth);
-    const userLogin = useSelector((state: RootReduxType) => state.auth.login);
+    const userIsAuth = useAppSelector((state) => state.auth.isAuth);
+    const userLogin = useAppSelector((state) => state.auth.login);
     const logoutHandle = useCallback(() => dispatch(logoutTS()), []);
 
     const navigate = useNavigate();
@@ -128,6 +129,7 @@ export default function App() {
     useEffect(() => {
         dispatch(getAuth());
     }, []);
+
 
     return (
         <Box sx={{display: 'flex'}}>
@@ -241,22 +243,22 @@ export default function App() {
             </Drawer>
             <Box component="main" sx={{flexGrow: 1, p: 3}}>
                 <DrawerHeader/>
-                    <Routes>
-                        <Route path="/message/*" element={<Dialogs/>}/>
-                        <Route path="/profile/" element={<Profile/>}/>
-                        <Route path="/profile/:userId" element={<Profile/>}/>
-                        <Route path="/users" element={<Users/>}/>
-                        <Route path="/news/" element={<News/>}/>
-                        <Route path="/music/" element={<Music/>}/>
-                        <Route path="/settings/" element={<Settings/>}/>
-                        <Route path="login" element={<Login/>}/>
-                        <Route
-                            path="/404"
-                            element={<h1 style={{textAlign: 'center'}}>404: PAGE NOT
-                                FOUND</h1>}
-                        />
-                        <Route path="*" element={<Navigate to={'/404'}/>}/>
-                    </Routes>
+                <Routes>
+                    <Route path="/message/*" element={<Dialogs/>}/>
+                    <Route path="/profile/" element={<Profile/>}/>
+                    <Route path="/profile/:userId" element={<Profile/>}/>
+                    <Route path="/users" element={<Users/>}/>
+                    <Route path="/news/" element={<News/>}/>
+                    <Route path="/music/" element={<Music/>}/>
+                    <Route path="/settings/" element={<Settings/>}/>
+                    <Route path="login" element={<Login/>}/>
+                    <Route
+                        path="/404"
+                        element={<h1 style={{textAlign: 'center'}}>404: PAGE NOT
+                            FOUND</h1>}
+                    />
+                    <Route path="*" element={<Navigate to={'/404'}/>}/>
+                </Routes>
             </Box>
         </Box>
     );

@@ -7,7 +7,7 @@ import {useAppSelector} from '../../../../redux/store';
 
 
 export const MyPosts = () => {
-    const posts = useAppSelector((state) => state.profilePage.posts);
+    const posts=useAppSelector((state)=> state.profilePage.posts)
 
     let postElements = posts.map((d: PostType) =>
         <Post

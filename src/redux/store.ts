@@ -21,6 +21,4 @@ export let store: Store<RootReduxType, ActionsType> = createStore(reducers,apply
 
 
 export const useAppSelector: TypedUseSelectorHook<RootReduxType> = useSelector
-
-
-export type AppDispatch = ThunkDispatch<RootReduxType, any, AnyAction>;
+export type AppDispatch = ThunkDispatch<RootReduxType, any, AnyAction>

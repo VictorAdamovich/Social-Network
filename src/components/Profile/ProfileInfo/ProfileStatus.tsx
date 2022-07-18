@@ -2,6 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import {useAppSelector} from '../../../redux/store';
 import {updateUserStatusTC} from '../../../redux/profile-reducer';
 import {useDispatch} from 'react-redux';
+import TextField from '@mui/material/TextField';
 
 export const ProfileStatus = () => {
     const dispatch: any = useDispatch();
@@ -21,12 +22,10 @@ export const ProfileStatus = () => {
         <div>
             {editeMode
                 ? <div>
-                    <input type="text"
-                           autoFocus={true}
-                           value={status}
-                           onChange={onChangeHandle}
-                           onBlur={editModeHandle}
-                    />
+                    <TextField id="standard-basic" value={status} variant="standard"
+                               autoFocus={true} onChange={onChangeHandle}
+                               onBlur={editModeHandle}/>
+
                 </div>
                 : <div>
                     <span
